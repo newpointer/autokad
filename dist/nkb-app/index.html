@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8">
+
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <meta name="fragment" content="!">
+
+        <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico">
+
+        <title ng-bind-template='{{::_trc("Арбитражные дела — НКБ", "Наименование приложения")}}'>Арбитражные дела — НКБ</title>
+
+        <style type="text/css">
+            .app-state-indicator {
+                position: fixed;
+                z-index: 1000000;
+                left: 0;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                background-color: #ffffff;
+            }
+        </style>
+
+        <!-- requirejs -->
+        <script src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.15/require.min.js"></script>
+
+        <!-- nkb-app -->
+        <script src="./main.js?f0e8353b8dda28733c8ed7fcaec553eef51dbaf4"></script>
+    </head>
+
+    <body>
+        <div class="app-state-indicator" ng-hide="isAppReady()"></div>
+        <div np-autokad></div>
+    </body>
+</html>

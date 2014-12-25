@@ -1,0 +1,30 @@
+{
+    "name": "autokad",
+    "version": "0.0.1-SNAPSHOT",
+    "description": "autokad frontend",
+
+    "author": {
+        "name": "nullpointer",
+        "url": "http://null-pointer.ru/"
+    },
+
+    "repository": {
+    },
+
+    "dependencies": {
+    },
+
+    "devDependencies": {
+        "grunt": "~0.4.2",
+        "grunt-contrib-clean": "~0.5",
+        "grunt-contrib-jshint": "~0.10",
+        "grunt-contrib-copy": "~0.5.0",
+        "grunt-bower-task": "~0.4",
+
+        "fs-extra": "0.8.x",
+        "underscore": "1.4.x",
+
+        "nullpointer-i18n-bin": "newpointer/i18n-bin.git",
+        "nullpointer-web-bin": "newpointer/web-bin.git"
+    }
+}
