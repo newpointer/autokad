@@ -14,13 +14,13 @@
 
 Установка зависимостей проекта, зависимостей модуля
 
-npm install
-grunt init
+    npm install
+    grunt init
 
 
 ## Проверка кода
 
-grunt jshint
+    grunt jshint
 
 
 ## i18n
@@ -29,14 +29,14 @@ grunt jshint
 
 [nullpointer-i18n-bin/docs/build.md](https://github.com/newpointer/i18n-bin/blob/master/docs/build.md)
 
-grunt i18n
+    grunt i18n
 
 
 ## Сборка
 
 Установка зависимостей модуля, проверка кода, оптимизация, дистрибутивы
 
-grunt build
+    grunt build
 
 ### Файлы дистрибутивов
 
@@ -50,16 +50,16 @@ grunt build
 
 Удаление зависимостей проекта
 
-grunt clean:deps
+    grunt clean:deps
 
 Удаление сборки
 
-grunt clean:target
+    grunt clean:target
 
 ## Полная пересборка
 
 Очистка, обновление зависимостей проекта, сборка
 
-grunt clean
-npm install
-grunt build
+    grunt clean
+    npm install
+    grunt build
