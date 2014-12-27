@@ -1,12 +1,12 @@
 # autokad
 
 Доступ к агрегированной информации об арбитражных делах
-с участием ЮЛ без перехода на сайт http://kad.arbitr.ru/
+с участием ЮЛ без перехода на сайт [kad.arbitr.ru](http://kad.arbitr.ru/)
 
 [Скриншот сервиса kad.arbitr.ru](../docs/images/kad.arbitr.ru-20141227.png)
 
 Для доступа к данным об арбитражных делах используется внутреннее API
-сервиса `kad.arbitr.ru`
+сервиса [kad.arbitr.ru](http://kad.arbitr.ru/)
 
 ## API сервиса kad.arbitr.ru
 
