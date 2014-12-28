@@ -63,3 +63,5 @@
     grunt clean
     npm install
     grunt build
+
+## [Документация](./docs/autokad.md)
