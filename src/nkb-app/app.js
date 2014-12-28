@@ -6,7 +6,8 @@ define(function(require) {'use strict';
                   require('jquery');
                   require('underscore');
 
-    var angular = require('angular');
+    var angular = require('angular'),
+        purl    = require('purl');
 
                   require('css!../external_components/bootstrap/css/bootstrap');
                   require('less!./styles/app');
@@ -26,11 +27,11 @@ define(function(require) {'use strict';
             $logProvider.debugEnabled(false);
         }])
         //
-        .run(['$log', '$rootScope', 'npL10n', function($log, $rootScope, npL10n){
+        .run(['$log', '$timeout', '$rootScope', 'npL10n', function($log, $timeout, $rootScope, npL10n){
             //
             _.extend($rootScope, {
                 app: {
-                    isSearch: null,
+                    title: null,
                     ready: false
                 },
                 isAppReady: function() {
@@ -39,11 +40,27 @@ define(function(require) {'use strict';
             });
 
             //
-            //$rootScope.$on('xxx-init', function(e, scope){
-                _.extend($rootScope.app, {
-                    ready: true
+            $timeout(function(){
+                var params  = purl().param();
+
+                var search = {
+                    name: params['search'],
+                    ogrn: params['ogrn'],
+                    inn: params['inn']
+                };
+
+                $rootScope.app.title = search.name;
+
+                $rootScope.$emit('np-autokad-do-search', {
+                    search: search,
+                    success: function() {
+                        $rootScope.app.ready = true;
+                    },
+                    error: function() {
+                        $log.warn('search error, search options:', search);
+                    }
                 });
-            //});
+            });
         }]);
     //
 

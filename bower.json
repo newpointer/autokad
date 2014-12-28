@@ -15,6 +15,7 @@
     "underscore": "1.5.*",
     "underscore.string": "2.3.*",
     "purl": "2.3.*",
+    "moment": "2.8.*",
     "nullpointer-i18n": "git://github.com/newpointer/i18n-js.git",
     "nullpointer-commons": "git://github.com/newpointer/commons-js.git",
     "bootstrap": "http://getbootstrap.com/2.3.2/assets/bootstrap.zip"

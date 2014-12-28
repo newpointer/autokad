@@ -28,7 +28,8 @@ root._RESOURCES_CONFIG = {
         'underscore':           'external_components/underscore/underscore',
         'underscore.string':    'external_components/underscore.string/underscore.string',
 
-        'purl':                 'external_components/purl/purl'
+        'purl':                 'external_components/purl/purl',
+        'moment':               'external_components/moment/moment'
     },
 
     packages: [{

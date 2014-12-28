@@ -1,3 +1,57 @@
-<div>
-    <a class="underline" href="http://kad.arbitr.ru/" target="_blank">${_trc("Арбитражные дела — НКБ", "Наименование приложения")}</a>
+<h5 class="search-header">
+    <div class="" ng-show="true">150 000 ${_tr("арбитражных дел")}</div>
+    <div class="" ng-show="true">${_tr("Нет арбитражных дел")}</div>
+</h5>
+<div class="row filters">
+    <div class="span3">
+        <select class="span3" ng-model="search.params.source">
+            <option value="name">${_tr("Искать по наименованию")}</option>
+            <option value="ogrn">${_tr("Искать по ОГРН")}</option>
+            <option value="inn">${_tr("Искать по ИНН")}</option>
+        </select>
+    </div>
+    <div class="span3">
+        <select class="span3" ng-model="search.params.period">
+            <option value="all">${_tr("За все время")}</option>
+            <option value="year">${_tr("За последний год")}</option>
+            <option value="month">${_tr("За последний месяц")}</option>
+        </select>
+    </div>
+    <div class="align-right">
+        <p><a class="underline" href="http://kad.arbitr.ru/" target="_blank">${_tr("Картотека арбитражных дел")}</a></p>
+    </div>
+</div>
+<div class="search-result">
+    <table class="table table-striped" ng-show="true">
+        <thead>
+            <tr>
+                <th>${_trc("Дело", "Арбитражное дело")}</th>
+                <th>${_trc("Судья, текущая инстанция", "Арбитражное дело")}</th>
+                <th>${_trc("Истец", "Арбитражное дело")}</th>
+                <th>${_trc("Ответчик", "Арбитражное дело")}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <span class="case-type">Административное</span>
+                    <span class="case-date">24.12.2014</span>
+                    <a class="underline case-link" href="http://kad.arbitr.ru/Card/f7ed1cbf-f6db-432c-bb4f-ba7d13a8975d" target="_blank">А03-22004/2013</a>
+                </td>
+                <td>
+                    <span class="case-judge">Коптева М. Б.</span>
+                    <span class="case-court">АС Республики Северная Осетия</span>
+                </td>
+                <td>
+                    <span class="plaintiff-name">ОАО "НК "Роснефть" - Кубаньнефтепродукт"</span>
+                    <span class="plaintiff-address">115035, г. Москва, Софийская наб., д.26/1</span>
+                </td>
+                <td>
+                    <span class="respondents-name">ЗАО Мичурина-Трудобеликовский</span>
+                    <span class="respondents-address">350000, Россия, г. Краснодар, Краснодарский край, ул. Орджоникидзе, 47</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="align-center muted" ng-show="true">${_tr("Арбитражных дел не найдено")}</div>
 </div>
