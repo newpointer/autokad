@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: feedback@null-pointer.ru\n"
 "POT-Creation-Date: \n"
 "PO-Revision-Date: \n"
-"Last-Translator: NULLPOINTER <feedback@null-pointer.ru>\n"
+"Last-Translator: ankostyuk <andrew.kostyuk@gmail.com>\n"
 "Language-Team: NULLPOINTER <feedback@null-pointer.ru>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -12,8 +12,69 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "CLDR_PLURAL_FORMS_FORMAT: one{0}few{1}many{2}other{2}\n"
+"X-Generator: Poedit 1.7.1\n"
 
-#: ../src/nkb-app/app.js:1 ../src/nkb-app/index.html:1
+#: ../src/autokad/views/autokad.html:1
+msgid "NG_PLURALIZE::KAD_SEARCH_TOTAL"
+msgstr "{'one': '{{count|number}} арбитражное дело', 'few': '{{count|number}} арбитражных дела', 'many': '{{count|number}} арбитражных дел', 'other': '{{count|number}} арбитражного дела'}"
+
+#: ../src/nkb-app/index.html:1
 msgctxt "Наименование приложения"
 msgid "Арбитражные дела — НКБ"
+msgstr ""
+
+#: ../src/autokad/views/autokad.html:1
+msgid "Арбитражных дел не найдено"
+msgstr ""
+
+#: ../src/autokad/views/autokad.html:1
+msgctxt "Арбитражное дело"
+msgid "Дело"
+msgstr ""
+
+#: ../src/autokad/views/autokad.html:1
+msgid "За все время"
+msgstr ""
+
+#: ../src/autokad/views/autokad.html:1
+msgid "За последний год"
+msgstr ""
+
+#: ../src/autokad/views/autokad.html:1
+msgid "За последний месяц"
+msgstr ""
+
+#: ../src/autokad/views/autokad.html:1
+msgid "Искать по ИНН"
+msgstr ""
+
+#: ../src/autokad/views/autokad.html:1
+msgid "Искать по ОГРН"
+msgstr ""
+
+#: ../src/autokad/views/autokad.html:1
+msgid "Искать по наименованию"
+msgstr ""
+
+#: ../src/autokad/views/autokad.html:1
+msgctxt "Арбитражное дело"
+msgid "Истец"
+msgstr ""
+
+#: ../src/autokad/views/autokad.html:1
+msgid "Картотека арбитражных дел"
+msgstr ""
+
+#: ../src/autokad/views/autokad.html:1
+msgid "Нет арбитражных дел"
+msgstr ""
+
+#: ../src/autokad/views/autokad.html:1
+msgctxt "Арбитражное дело"
+msgid "Ответчик"
+msgstr ""
+
+#: ../src/autokad/views/autokad.html:1
+msgctxt "Арбитражное дело"
+msgid "Судья, текущая инстанция"
 msgstr ""

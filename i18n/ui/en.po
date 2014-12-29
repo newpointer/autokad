@@ -14,7 +14,69 @@ msgstr ""
 "CLDR_PLURAL_FORMS_FORMAT: one{0}other{1}\n"
 "X-Generator: Poedit 1.7.1\n"
 
-#: ../src/nkb-app/app.js:1 ../src/nkb-app/index.html:1
+#: ../src/autokad/views/autokad.html:1
+msgid "NG_PLURALIZE::KAD_SEARCH_TOTAL"
+msgstr "{'one': '1 арбитражное дело', 'other': '{{count|number}} арбитражное дело'}"
+
+#: ../src/nkb-app/index.html:1
 msgctxt "Наименование приложения"
 msgid "Арбитражные дела — НКБ"
 msgstr "Arbitration Cases — NCB"
+
+#: ../src/autokad/views/autokad.html:1
+#, fuzzy
+msgid "Арбитражных дел не найдено"
+msgstr "Arbitration Cases — NCB"
+
+#: ../src/autokad/views/autokad.html:1
+msgctxt "Арбитражное дело"
+msgid "Дело"
+msgstr ""
+
+#: ../src/autokad/views/autokad.html:1
+msgid "За все время"
+msgstr ""
+
+#: ../src/autokad/views/autokad.html:1
+msgid "За последний год"
+msgstr ""
+
+#: ../src/autokad/views/autokad.html:1
+msgid "За последний месяц"
+msgstr ""
+
+#: ../src/autokad/views/autokad.html:1
+msgid "Искать по ИНН"
+msgstr ""
+
+#: ../src/autokad/views/autokad.html:1
+msgid "Искать по ОГРН"
+msgstr ""
+
+#: ../src/autokad/views/autokad.html:1
+msgid "Искать по наименованию"
+msgstr ""
+
+#: ../src/autokad/views/autokad.html:1
+msgctxt "Арбитражное дело"
+msgid "Истец"
+msgstr ""
+
+#: ../src/autokad/views/autokad.html:1
+msgid "Картотека арбитражных дел"
+msgstr ""
+
+#: ../src/autokad/views/autokad.html:1
+#, fuzzy
+msgid "Нет арбитражных дел"
+msgstr "Arbitration Cases — NCB"
+
+#: ../src/autokad/views/autokad.html:1
+msgctxt "Арбитражное дело"
+msgid "Ответчик"
+msgstr ""
+
+#: ../src/autokad/views/autokad.html:1
+msgctxt "Арбитражное дело"
+msgid "Судья, текущая инстанция"
+msgstr ""

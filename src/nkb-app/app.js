@@ -58,6 +58,7 @@ define(function(require) {'use strict';
                     },
                     error: function() {
                         $log.warn('search error, search options:', search);
+                        $rootScope.app.ready = true;
                     }
                 });
             });

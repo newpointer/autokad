@@ -45,7 +45,7 @@ root._RESOURCES_CONFIG = {
      * external packages
      *
      */
-    {
+     {
         name: 'i18n',
         location: 'external_components/nullpointer-i18n',
         main: 'i18n'

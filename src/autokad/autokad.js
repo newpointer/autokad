@@ -108,21 +108,39 @@ define(function(require) {'use strict';
                 link: function(scope, element, attrs) {
                     var search = {
                         params: DEFAULT_SEARCH_PARAMS,
+                        result: { // В формате kad.arbitr.ru
+                            TotalCount: null,
+                            Items: null
+                        },
+                        getTotal: function() {
+                            return search.result.TotalCount || 0;
+                        },
+                        isEmptyResult: function() {
+                            return !search.result.TotalCount;
+                        },
+                        isNoResult: function() {
+                            return search.noResult;
+                        },
+                        noResult: true,
                         watch: true
                     };
 
                     var kadSearchRequest;
 
                     $rootScope.$on('np-autokad-do-search', function(e, options){
-                        $log.log('np-autokad-do-search...', options);
                         initSearch(options.search);
-                        kadSearch(options.success, options.error);
+                        kadSearch(function(){
+                            search.noResult = search.isEmptyResult();
+                            options.success();
+                        }, function(){
+                            search.noResult = true;
+                            options.error();
+                        });
                     });
 
                     scope.$watch('search.params', function(newValue, oldValue) {
                         if (newValue !== oldValue) {
                             if (search.watch) {
-                                //$log.warn('*** watch...', search.params);
                                 kadSearch();
                             } else {
                                 search.watch = true;
@@ -136,8 +154,6 @@ define(function(require) {'use strict';
                     }
 
                     function kadSearch(success, error) {
-                        $log.log('kadSearch...', search.params);
-
                         var request = buildRequest(search.params);
 
                         $log.info('request...', request);
@@ -148,20 +164,15 @@ define(function(require) {'use strict';
                             q: null,
                             previousRequest: kadSearchRequest,
                             success: function(data, status){
-                                $log.log('success...', data);
-
-                                // $log.warn('change ...');
-                                // search.params.inn = null;
+                                search.result = data.Result;
                             },
                             error: function(data, status){
-                                $log.warn('error...');
+                                search.result = {};
                                 hasError = true;
                             }
                         });
 
                         kadSearchRequest.completePromise.then(function(){
-                            console.log('kadSearchRequest complete');
-
                             if (!hasError && _.isFunction(success)) {
                                 success();
                             } else if (hasError && _.isFunction(error)) {
@@ -173,7 +184,7 @@ define(function(require) {'use strict';
                     //
                     _.extend(scope, {
                         search: search
-                    });
+                    }, i18n.translateFuncs);
                 }
             };
         }]);
