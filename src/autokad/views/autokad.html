@@ -47,13 +47,13 @@
                             <a ng-click="item.__more = !item.__more">{{item.Plaintiffs.Count | number}}...</a>
                         </div>
                         <div class="participant">
-                            <span class="participant-name">{{item.Plaintiffs.Participants[0].Name}}</span>
+                            <span class="participant-name" ng-bind-html="item.Plaintiffs.Participants[0].Name | highlightSearch:search.request.q"></span>
                             <span class="participant-address muted">{{item.Plaintiffs.Participants[0].Address}}</span>
                         </div>
                     </div>
                     <div class="participant-more-items" ng-show="item.__more">
                         <div class="participant" ng-repeat="participant in item.Plaintiffs.Participants track by $index" ng-show="$index > 0">
-                            <span class="participant-name">{{participant.Name}}</span>
+                            <span class="participant-name" ng-bind-html="participant.Name | highlightSearch:search.request.q"></span>
                             <span class="participant-address muted">{{participant.Address}}</span>
                         </div>
                         <div class="participant-detailed" ng-show="item.Plaintiffs.Count > item.Plaintiffs.Participants.length">
@@ -67,13 +67,13 @@
                             <a ng-click="item.__more = !item.__more">{{item.Respondents.Count | number}}...</a>
                         </div>
                         <div class="participant">
-                            <span class="participant-name">{{item.Respondents.Participants[0].Name}}</span>
+                            <span class="participant-name" ng-bind-html="item.Respondents.Participants[0].Name | highlightSearch:search.request.q"></span>
                             <span class="participant-address muted">{{item.Respondents.Participants[0].Address}}</span>
                         </div>
                     </div>
                     <div class="participant-more-items" ng-show="item.__more">
                         <div class="participant" ng-repeat="participant in item.Respondents.Participants track by $index" ng-show="$index > 0">
-                            <span class="participant-name">{{participant.Name}}</span>
+                            <span class="participant-name" ng-bind-html="participant.Name | highlightSearch:search.request.q"></span>
                             <span class="participant-address muted">{{participant.Address}}</span>
                         </div>
                         <div class="participant-detailed" ng-show="item.Respondents.Count > item.Respondents.Participants.length">

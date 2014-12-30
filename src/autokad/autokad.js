@@ -110,6 +110,7 @@ define(function(require) {'use strict';
                 link: function(scope, element, attrs) {
                     var search = {
                         params: DEFAULT_SEARCH_PARAMS,
+                        request: null,
                         result: { // В формате kad.arbitr.ru
                             TotalCount: null,
                             Items: null
@@ -156,9 +157,9 @@ define(function(require) {'use strict';
                     }
 
                     function kadSearch(success, error) {
-                        var request = buildRequest(search.params);
+                        search.request = buildRequest(search.params);
 
-                        $log.info('request...', request);
+                        $log.info('search.request...', search.request);
 
                         var hasError = false;
 
@@ -188,6 +189,33 @@ define(function(require) {'use strict';
                         search: search
                     }, i18n.translateFuncs);
                 }
+            };
+        }])
+        //
+        .filter('highlightSearch', ['$sce', function($sce){
+            return function(text, query){
+                if (!query) {
+                    return $sce.trustAsHtml(text);
+                }
+
+                var ignorePattern   = '[\\s"«»]+',
+                ignoreRegexp    = new RegExp(ignorePattern, ''),
+                queries         = query.split(ignoreRegexp),
+                q               = '',
+                t, i;
+
+                for (i = 0; i < queries.length; i++) {
+                    t = queries[i];
+                    if (t) {
+                        q += q ? (ignorePattern + t) : t;
+                    }
+                }
+
+                q = q ? ('["«]?' + q + '["»]?') : '';
+
+                text = text.replace(new RegExp(q, 'igm'), '<b>$&</b>');
+
+                return $sce.trustAsHtml(text);
             };
         }]);
     //
