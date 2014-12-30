@@ -12,7 +12,7 @@
 
         <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico">
 
-        <title ng-bind-template='{{::_trc("Арбитражные дела — НКБ", "Наименование приложения")}}'>Арбитражные дела — НКБ</title>
+        <title ng-bind-template='{{app.title ? app.title + " — " : ""}}{{::_trc("Арбитражные дела — НКБ", "Наименование приложения")}}'>Арбитражные дела — НКБ</title>
 
         <style type="text/css">
             .app-state-indicator {
@@ -30,11 +30,15 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.15/require.min.js"></script>
 
         <!-- nkb-app -->
-        <script src="./main.js?68a96be34f6ea55a3990f30b709be0f13666a881"></script>
+        <script src="./main.js?352f23f49a01931368812e15f0aa567a15162fbf"></script>
     </head>
 
     <body>
         <div class="app-state-indicator" ng-hide="isAppReady()"></div>
-        <div np-autokad></div>
+        <div class="container">
+            <hr>
+            <div np-autokad></div>
+            <hr>
+        </div>
     </body>
 </html>

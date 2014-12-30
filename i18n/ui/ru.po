@@ -75,6 +75,10 @@ msgid "Ответчик"
 msgstr ""
 
 #: ../src/autokad/views/autokad.html:1
+msgid "Подробнее..."
+msgstr ""
+
+#: ../src/autokad/views/autokad.html:1
 msgctxt "Арбитражное дело"
-msgid "Судья, текущая инстанция"
+msgid "Текущая инстанция"
 msgstr ""

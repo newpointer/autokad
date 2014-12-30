@@ -56,7 +56,7 @@ msgstr ""
 
 #: ../src/autokad/views/autokad.html:1
 msgctxt "Арбитражное дело"
-msgid "Судья, текущая инстанция"
+msgid "Текущая инстанция"
 msgstr ""
 
 #: ../src/autokad/views/autokad.html:1
@@ -67,6 +67,11 @@ msgstr ""
 #: ../src/autokad/views/autokad.html:1
 msgctxt "Арбитражное дело"
 msgid "Ответчик"
+msgstr ""
+
+#: ../src/autokad/views/autokad.html:1
+#: ../src/autokad/views/autokad.html:1
+msgid "Подробнее..."
 msgstr ""
 
 #: ../src/autokad/views/autokad.html:1

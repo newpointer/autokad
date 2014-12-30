@@ -3,74 +3,58 @@
     <div class="" ng-show="search.isEmptyResult()">${_tr("Нет арбитражных дел")}</div>
 </h5>
 <div class="row filters" ng-hide="search.isNoResult()">
-    <div class="span3">
+    <div class="span3 source-filter">
         <select class="span3" ng-model="search.params.source">
             <option value="name">${_tr("Искать по наименованию")}</option>
             <option value="ogrn">${_tr("Искать по ОГРН")}</option>
             <option value="inn">${_tr("Искать по ИНН")}</option>
         </select>
     </div>
-    <div class="span3">
+    <div class="span3 period-filter">
         <select class="span3" ng-model="search.params.period">
             <option value="all">${_tr("За все время")}</option>
             <option value="year">${_tr("За последний год")}</option>
             <option value="month">${_tr("За последний месяц")}</option>
         </select>
     </div>
-    <div class="align-right">
-        <p><a class="underline" href="http://kad.arbitr.ru/" target="_blank">${_tr("Картотека арбитражных дел")}</a></p>
+    <div class="align-right arbitr-link-box">
+        <a class="underline" href="http://kad.arbitr.ru/" target="_blank">${_tr("Картотека арбитражных дел")}</a>
     </div>
 </div>
 <div class="search-result" ng-hide="search.isNoResult()">
     <table class="table table-striped" ng-hide="search.isEmptyResult()">
         <thead>
             <tr>
-                <th>${_trc("Дело", "Арбитражное дело")}</th>
-                <th>${_trc("Судья, текущая инстанция", "Арбитражное дело")}</th>
-                <th>${_trc("Истец", "Арбитражное дело")}</th>
-                <th>${_trc("Ответчик", "Арбитражное дело")}</th>
+                <th class="case">${_trc("Дело", "Арбитражное дело")}</th>
+                <th class="court">${_trc("Текущая инстанция", "Арбитражное дело")}</th>
+                <th class="plaintiff">${_trc("Истец", "Арбитражное дело")}</th>
+                <th class="respondent">${_trc("Ответчик", "Арбитражное дело")}</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>
-                    <span class="case-type">Административное</span>
-                    <span class="case-date">24.12.2014</span>
-                    <a class="underline case-link" href="http://kad.arbitr.ru/Card/f7ed1cbf-f6db-432c-bb4f-ba7d13a8975d" target="_blank">А03-22004/2013</a>
-                </td>
-                <td>
-                    <span class="case-judge">Коптева М. Б.</span>
-                    <span class="case-court">АС Республики Северная Осетия</span>
-                </td>
-                <td>
-                    <span class="plaintiff-name">ОАО "НК "Роснефть" - Кубаньнефтепродукт"</span>
-                    <span class="plaintiff-address">115035, г. Москва, Софийская наб., д.26/1</span>
-                </td>
-                <td>
-                    <span class="respondents-name">ЗАО Мичурина-Трудобеликовский</span>
-                    <span class="respondents-address">350000, Россия, г. Краснодар, Краснодарский край, ул. Орджоникидзе, 47</span>
-                </td>
-            </tr>
             <tr ng-repeat="item in search.result.Items track by $index">
                 <td>
-                    <span class="case-type badge">{{_tr(item.CaseType)}}</span>
-                    <span class="case-date">{{item.Date | date:'dd.MM.yyyy'}}</span>
+                    <span class="case-info"><span class="case-type badge">{{_tr(item.CaseType)}}</span><span class="case-date">{{item.Date | date:'dd.MM.yyyy'}}</span></span>
                     <a class="underline case-link" ng-href="http://kad.arbitr.ru/Card/{{item.CaseId}}" target="_blank">{{item.CaseNumber}}</a>
                 </td>
                 <td>
-                    <span class="case-judge">{{item.Judge}}</span>
                     <span class="case-court">{{item.CourtName}}</span>
+                    <span class="case-judge muted">{{item.Judge}}</span>
                 </td>
                 <td>
-                    <div class="participant participant-first">
-                        <span class="participant-name">{{item.Plaintiffs.Participants[0].Name}}</span>
-                        <span class="participant-address">{{item.Plaintiffs.Participants[0].Address}}</span>
-                        <span class="participant-more-info" ng-show="item.Plaintiffs.Count > 1"><a ng-click="item.__more = !item.__more">{{item.Plaintiffs.Count | number}}</a></span>
+                    <div class="participant-first">
+                        <div class="participant-more-info" ng-show="item.Plaintiffs.Count > 1">
+                            <a ng-click="item.__more = !item.__more">{{item.Plaintiffs.Count | number}}...</a>
+                        </div>
+                        <div class="participant">
+                            <span class="participant-name">{{item.Plaintiffs.Participants[0].Name}}</span>
+                            <span class="participant-address muted">{{item.Plaintiffs.Participants[0].Address}}</span>
+                        </div>
                     </div>
                     <div class="participant-more-items" ng-show="item.__more">
                         <div class="participant" ng-repeat="participant in item.Plaintiffs.Participants track by $index" ng-show="$index > 0">
                             <span class="participant-name">{{participant.Name}}</span>
-                            <span class="participant-address">{{participant.Address}}</span>
+                            <span class="participant-address muted">{{participant.Address}}</span>
                         </div>
                         <div class="participant-detailed" ng-show="item.Plaintiffs.Count > item.Plaintiffs.Participants.length">
                             <a class="underline" ng-href="http://kad.arbitr.ru/Card/{{item.CaseId}}" target="_blank">${_tr("Подробнее...")}</a>
@@ -78,15 +62,19 @@
                     </div>
                 </td>
                 <td>
-                    <div class="participant participant-first">
-                        <span class="participant-name">{{item.Respondents.Participants[0].Name}}</span>
-                        <span class="participant-address">{{item.Respondents.Participants[0].Address}}</span>
-                        <span class="participant-more-info" ng-show="item.Respondents.Count > 1"><a ng-click="item.__more = !item.__more">{{item.Respondents.Count | number}}</a></span>
+                    <div class="participant-first">
+                        <div class="participant-more-info" ng-show="item.Respondents.Count > 1">
+                            <a ng-click="item.__more = !item.__more">{{item.Respondents.Count | number}}...</a>
+                        </div>
+                        <div class="participant">
+                            <span class="participant-name">{{item.Respondents.Participants[0].Name}}</span>
+                            <span class="participant-address muted">{{item.Respondents.Participants[0].Address}}</span>
+                        </div>
                     </div>
                     <div class="participant-more-items" ng-show="item.__more">
                         <div class="participant" ng-repeat="participant in item.Respondents.Participants track by $index" ng-show="$index > 0">
                             <span class="participant-name">{{participant.Name}}</span>
-                            <span class="participant-address">{{participant.Address}}</span>
+                            <span class="participant-address muted">{{participant.Address}}</span>
                         </div>
                         <div class="participant-detailed" ng-show="item.Respondents.Count > item.Respondents.Participants.length">
                             <a class="underline" ng-href="http://kad.arbitr.ru/Card/{{item.CaseId}}" target="_blank">${_tr("Подробнее...")}</a>

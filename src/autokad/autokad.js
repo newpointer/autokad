@@ -5,6 +5,8 @@
  */
 define(function(require) {'use strict';
 
+                          require('less!./styles/autokad');
+
     var template        = require('text!./views/autokad.html');
 
                           require('jquery');
