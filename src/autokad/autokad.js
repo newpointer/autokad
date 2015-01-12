@@ -31,7 +31,9 @@ define(function(require) {'use strict';
     var DEFAULT_REQUEST = {
         q: null,
         dateFrom: null,
-        dateTo: null
+        dateTo: null,
+        page: 1,
+        pageSize: 25
     };
 
     var period = new Period();
@@ -161,27 +163,33 @@ define(function(require) {'use strict';
 
                         $log.info('search.request...', search.request);
 
-                        var hasError = false;
+                        var hasError = !search.request.q;
 
-                        kadSearchRequest = npAutokadResource.kadSearch({
-                            q: null,
-                            previousRequest: kadSearchRequest,
-                            success: function(data, status){
-                                search.result = data.Result;
-                            },
-                            error: function(data, status){
-                                search.result = {};
-                                hasError = true;
-                            }
-                        });
+                        if (hasError) {
+                            complete();
+                        } else {
+                            kadSearchRequest = npAutokadResource.kadSearch({
+                                r: search.request,
+                                previousRequest: kadSearchRequest,
+                                success: function(data, status){
+                                    search.result = data.Result;
+                                },
+                                error: function(data, status){
+                                    search.result = {};
+                                    hasError = true;
+                                }
+                            });
 
-                        kadSearchRequest.completePromise.then(function(){
+                            kadSearchRequest.completePromise.then(complete);
+                        }
+
+                        function complete() {
                             if (!hasError && _.isFunction(success)) {
                                 success();
                             } else if (hasError && _.isFunction(error)) {
                                 error();
                             }
-                        });
+                        }
                     }
 
                     //
