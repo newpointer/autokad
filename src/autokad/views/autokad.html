@@ -35,9 +35,11 @@
         <tbody infinite-scroll="search.pager.nextPage()" infinite-scroll-disabled="search.pager.isDisabled()" infinite-scroll-distance="0" infinite-scroll-immediate-check="false">
             <tr ng-repeat="item in search.result.Items track by $index">
                 <td>
-                    <p>{{$index + 1}}</p>
-                    <span class="case-info"><span class="case-type badge">{{_tr(item.CaseType)}}</span><span class="case-date">{{item.Date | date:'dd.MM.yyyy'}}</span></span>
-                    <a class="underline case-link" ng-href="http://kad.arbitr.ru/Card/{{item.CaseId}}" target="_blank">{{item.CaseNumber}}</a>
+                    <!--<div class="td-wrapper">-->
+                        <!--<span class="item-number muted">{{($index + 1) | number}}.</span>-->
+                        <span class="case-info"><span class="case-type badge">{{_tr(item.CaseType)}}</span><span class="case-date">{{item.Date | date:'dd.MM.yyyy'}}</span></span>
+                        <a class="underline case-link" ng-href="http://kad.arbitr.ru/Card/{{item.CaseId}}" target="_blank">{{item.CaseNumber}}</a>
+                    <!--</div>-->
                 </td>
                 <td>
                     <span class="case-court">{{item.CourtName}}</span>
