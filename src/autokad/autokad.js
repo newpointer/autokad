@@ -75,7 +75,7 @@ define(function(require) {'use strict';
             };
 
             function buildSearchRequestData(searchParams) {
-                var requestData = DEFAULT_SEARCH_REQUEST_DATA,
+                var requestData = _.extend({}, DEFAULT_SEARCH_REQUEST_DATA),
                     value;
 
                 _.each(TRANSFORM_SEARCH_PARAMS, function(paramTransform, param){
@@ -343,9 +343,12 @@ define(function(require) {'use strict';
         //
         .filter('highlightSearch', ['$sce', function($sce){
             return function(text, query){
-                if (!query || !text) {
+                if (!_.isString(query) || _.isBlank(query) ||
+                    !_.isString(text) || _.isBlank(text)) {
                     return $sce.trustAsHtml(text);
                 }
+
+                console.log('<<< query...', query);
 
                 var ignorePattern   = '[\\s"«»]+',
                 ignoreRegexp    = new RegExp(ignorePattern, ''),
