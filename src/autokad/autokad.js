@@ -187,13 +187,19 @@ define(function(require) {'use strict';
 
                     $rootScope.$on('np-autokad-do-search', function(e, options){
                         initSearch(options.search);
-                        doSearch(function(){
-                            search.noResult = search.isEmptyResult();
-                            options.success();
-                        }, function(){
-                            search.noResult = true;
-                            options.error();
-                        });
+                        doSearch(
+                            function(){
+                                search.noResult = search.isEmptyResult();
+                                if (_.isFunction(options.success)) {
+                                    options.success();
+                                }
+                            },
+                            function(){
+                                search.noResult = true;
+                                if (_.isFunction(options.error)) {
+                                    options.error();
+                                }
+                            });
                     });
 
                     scope.$watch('search.params', function(newValue, oldValue) {
