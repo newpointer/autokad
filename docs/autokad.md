@@ -8,6 +8,37 @@
 Для доступа к данным об арбитражных делах используется внутреннее API
 сервиса [kad.arbitr.ru](http://kad.arbitr.ru/)
 
+
+## Использование API сервиса kad.arbitr.ru
+
+Для использования API сервиса kad.arbitr.ru необходимо:
+
+* Проксировать запросы к API. Проксируемый url: с `/kad.arbitr.ru/Kad/` на `http://kad.arbitr.ru/Kad/`.
+
+* Использовать маскимально идентичные с внутренним API сервиса `kad.arbitr.ru` значения параметров запросов для "симуляции вызова API на стороне `kad.arbitr.ru`"
+
+* Выставить заголовки запросов для "симуляции вызова API на стороне `kad.arbitr.ru`" и "не раскрытия данных стороннего пользователя".
+Часть заголовков выставляется в клиентском запросе (см. конретный вызов API).
+Часть заголовков необходимо выставить посредством веб-сервера (см. [Настройка веб-сервера](#Настройка веб-сервера)).
+
+* Обработать заголовки ответов для "защиты стороннего пользователя от данных `kad.arbitr.ru`"
+
+### Настройка веб-сервера
+
+#### Настройка nginx
+
+```
+location /kad.arbitr.ru/Kad/ {
+    proxy_pass          http://kad.arbitr.ru/Kad/;
+
+    proxy_set_header    Host        kad.arbitr.ru;
+    proxy_set_header    Origin      http://kad.arbitr.ru;
+    proxy_set_header    Referer     http://kad.arbitr.ru/;
+
+    proxy_hide_header   Set-Cookie;
+}
+```
+
 ## API сервиса kad.arbitr.ru
 
 ### Поиск арбитражных дел
@@ -22,9 +53,6 @@ Accept: application/json, text/javascript, */*
 Accept-Encoding: gzip, deflate
 Content-Type: application/json
 Cookie:__utma=14300007.1560979077.1419681550.1419681550.1419681550.1; __utmz=14300007.1419681550.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); ASP.NET_SessionId=o33wghgnfxi041kx3nsruwki; userId=2bcd95e5-4511-4ecb-8b12-519cbce24a86:s0hOMqJTdq/CE7opFdCBvw==; __utmt=1; __utma=228081543.1213039978.1419665530.1421072267.1421072267.10; __utmb=228081543.2.10.1421072267; __utmc=228081543; __utmz=228081543.1421072267.9.5.utmcsr=localhost:8180|utmccn=(referral)|utmcmd=referral|utmcct=/autokad/src/nkb-app/; aUserId=832fe384-d14c-4bd9-83fb-61aa7182954c:NGEVLG4bQfvBFguC16bdVQ==
-Host: kad.arbitr.ru
-Origin: http://kad.arbitr.ru
-Referer: http://kad.arbitr.ru/
 x-date-format: iso
 X-Requested-With: XMLHttpRequest
 
@@ -55,9 +83,10 @@ X-Requested-With: XMLHttpRequest
     "Page": 1,
 
     // Размер страницы (Number)
+    // Всегда используем '25' для совместимости
     "Count": 25,
 
-    // Не используем
+    // Не используем, но оставляем для совместимости
     "Courts": [],
     "Judges": [],
     "CaseNumbers": [],
