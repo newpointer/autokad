@@ -2,7 +2,7 @@
   "name": "autokad",
   "version": "0.0.1-SNAPSHOT",
   "description": "autokad frontend",
-  "main": "./dist/nkb-app/main.js",
+  "main": "*",
   "ignore": [".*", "bin", "data", "test", "tmp", "Gruntfile.js", "package.json", "README.md"],
   "dependencies": {
     "requirejs": "2.1.15",
