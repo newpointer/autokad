@@ -163,9 +163,9 @@ define(function(require) {'use strict';
                         requestData: null,
                         request: null,
                         result: { // В формате kad.arbitr.ru
-                            TotalCount: null,
-                            PagesCount: null,
-                            Items: null
+                            'TotalCount': null,
+                            'PagesCount': null,
+                            'Items': null
                         },
                         pager: new Pager(),
                         getTotal: function() {
@@ -180,6 +180,10 @@ define(function(require) {'use strict';
                         noResult: true,
                         watch: true
                     };
+
+                    $rootScope.$on('np-autokad-do-clear', function(){
+                        clearSearch();
+                    });
 
                     $rootScope.$on('np-autokad-do-search', function(e, options){
                         initSearch(options.search);
@@ -250,7 +254,7 @@ define(function(require) {'use strict';
                         }
 
                         function noMore(hasError, result) {
-                            return hasError || (result ? search.requestData.page >= result.PagesCount : true);
+                            return hasError || (result ? search.requestData.page >= result['PagesCount'] : true);
                         }
                     }
 
@@ -259,6 +263,13 @@ define(function(require) {'use strict';
                             search.request.abort();
                         }
                         search.requestData.page = 1;
+                    }
+
+                    function clearSearch() {
+                        resetSearchRequest();
+                        search.pager.reset(true, null);
+                        search.result = {};
+                        search.noResult = true;
                     }
 
                     function searchRequest(callback) {

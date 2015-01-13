@@ -13,7 +13,7 @@ define(function(require) {'use strict';
         //
         .constant('npAutokadResourceConfig', {
             'kad.search': {
-                // url: '/autokad/data/demo/r.json',
+                // url: '/autokad/data/demo/r.json'
                 url: '/kad.arbitr.ru/Kad/SearchInstances'
             }
         })

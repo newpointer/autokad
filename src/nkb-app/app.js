@@ -62,6 +62,11 @@ define(function(require) {'use strict';
                     }
                 });
             });
+
+            // test
+            // $('body').click(function(){
+            //     $rootScope.$emit('np-autokad-do-clear');
+            // });
         }]);
     //
 
