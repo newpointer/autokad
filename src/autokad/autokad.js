@@ -40,7 +40,7 @@ define(function(require) {'use strict';
                 period: 'all',
             };
 
-            var DEFAULT_REQUEST_DATA = {
+            var DEFAULT_SEARCH_REQUEST_DATA = {
                 q: null,
                 dateFrom: null,
                 dateTo: null,
@@ -74,8 +74,8 @@ define(function(require) {'use strict';
                 }
             };
 
-            function buildRequestData(searchParams) {
-                var requestData = DEFAULT_REQUEST_DATA,
+            function buildSearchRequestData(searchParams) {
+                var requestData = DEFAULT_SEARCH_REQUEST_DATA,
                     value;
 
                 _.each(TRANSFORM_SEARCH_PARAMS, function(paramTransform, param){
@@ -147,7 +147,10 @@ define(function(require) {'use strict';
                 getDefaultSearchParams: function() {
                     return DEFAULT_SEARCH_PARAMS;
                 },
-                buildRequestData: buildRequestData,
+                getDefaultSearchRequestData: function() {
+                    return DEFAULT_SEARCH_REQUEST_DATA;
+                },
+                buildSearchRequestData: buildSearchRequestData,
                 loading: loading
             };
         }])
@@ -159,8 +162,8 @@ define(function(require) {'use strict';
                 scope: {},
                 link: function(scope, element, attrs) {
                     var search = {
-                        params: {},
-                        requestData: {},
+                        params: null,
+                        requestData: null,
                         request: null,
                         result: { // В формате kad.arbitr.ru
                             'TotalCount': null,
@@ -219,7 +222,7 @@ define(function(require) {'use strict';
 
                     function doSearch(success, error) {
                         resetSearchRequest();
-                        search.requestData = npAutokadHelper.buildRequestData(search.params);
+                        search.requestData = npAutokadHelper.buildSearchRequestData(search.params);
 
                         if (!search.requestData.q) {
                             complete(true);
@@ -268,6 +271,7 @@ define(function(require) {'use strict';
                         if (search.request) {
                             search.request.abort();
                         }
+                        search.requestData = npAutokadHelper.getDefaultSearchRequestData();
                     }
 
                     function clearSearch() {
