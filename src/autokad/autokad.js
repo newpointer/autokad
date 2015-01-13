@@ -159,8 +159,8 @@ define(function(require) {'use strict';
                 scope: {},
                 link: function(scope, element, attrs) {
                     var search = {
-                        params: null,
-                        requestData: null,
+                        params: {},
+                        requestData: {},
                         request: null,
                         result: { // В формате kad.arbitr.ru
                             'TotalCount': null,
@@ -218,12 +218,12 @@ define(function(require) {'use strict';
                     }
 
                     function doSearch(success, error) {
+                        resetSearchRequest();
                         search.requestData = npAutokadHelper.buildRequestData(search.params);
 
                         if (!search.requestData.q) {
                             complete(true);
                         } else {
-                            resetSearchRequest();
                             npAutokadHelper.loading(element, function(done){
                                 searchRequest(function(hasError, result){
                                     complete(hasError, result);
@@ -268,7 +268,6 @@ define(function(require) {'use strict';
                         if (search.request) {
                             search.request.abort();
                         }
-                        search.requestData.page = 1;
                     }
 
                     function clearSearch() {
