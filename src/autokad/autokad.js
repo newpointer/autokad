@@ -27,7 +27,7 @@ define(function(require) {'use strict';
             template = i18n.translateTemplate(template);
         }])
         //
-        .factory('npAutokadHelper', ['$log', '$timeout', function($log, $timeout){
+        .factory('npAutokadHelper', ['$log', '$timeout', 'npAutokadResource', function($log, $timeout, npAutokadResource){
             /*
              * request
              *
@@ -142,6 +142,33 @@ define(function(require) {'use strict';
                 }
             }
 
+            /*
+             * case
+             *
+             */
+            function getCaseCount(query, success, error) {
+                var result, request;
+
+                request = npAutokadResource.kadSearch({
+                    r: {
+                        q: query
+                    },
+                    success: function(data, status){
+                        result = data['Result']['TotalCount'];
+                        if (_.isFunction(success)) {
+                            success(result);
+                        }
+                    },
+                    error: function(data, status){
+                        if (_.isFunction(error)) {
+                            error();
+                        }
+                    }
+                });
+
+                return request;
+            }
+
             // API
             return {
                 getDefaultSearchParams: function() {
@@ -151,7 +178,8 @@ define(function(require) {'use strict';
                     return DEFAULT_SEARCH_REQUEST_DATA;
                 },
                 buildSearchRequestData: buildSearchRequestData,
-                loading: loading
+                loading: loading,
+                getCaseCount: getCaseCount
             };
         }])
         //
@@ -282,25 +310,16 @@ define(function(require) {'use strict';
                     }
 
                     function searchRequest(callback) {
-                        var hasError    = false,
-                            result      = {};
-
                         search.request = npAutokadResource.kadSearch({
                             r: search.requestData,
                             previousRequest: search.request,
                             success: function(data, status){
-                                result = data.Result;
+                                callback(false, data.Result);
                             },
                             error: function(data, status){
-                                hasError = true;
+                                callback(true);
                             }
                         });
-
-                        search.request.completePromise.then(complete, complete);
-
-                        function complete() {
-                            callback(hasError, result);
-                        }
                     }
 
                     //
@@ -343,8 +362,8 @@ define(function(require) {'use strict';
         //
         .filter('highlightSearch', ['$sce', function($sce){
             return function(text, query){
-                if (!_.isString(query) || _.isBlank(query) ||
-                    !_.isString(text) || _.isBlank(text)) {
+                if (_.isBlank(query) || _.isBlank(text) ||
+                    !_.isString(query) || !_.isString(text)) {
                     return $sce.trustAsHtml(text);
                 }
 

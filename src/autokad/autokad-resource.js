@@ -36,9 +36,9 @@ define(function(require) {'use strict';
                                 "Type": -1,
                                 "ExactMatch": false
                             }],
-                            "DateFrom": options.r.dateFrom,
-                            "DateTo": options.r.dateTo,
-                            "Page": options.r.page,
+                            "DateFrom": options.r.dateFrom || null,
+                            "DateTo": options.r.dateTo || null,
+                            "Page": options.r.page || 1,
                             "Count": 25,
                             "Courts": [],
                             "Judges": [],

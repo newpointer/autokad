@@ -19,15 +19,11 @@ define(function(require) {'use strict';
 
     var app = angular.module('app', _.pluck(submodules, 'name'))
         //
-        .constant('appConfig', {
-            name: 'autokad'
-        })
-        //
         .config(['$logProvider', function($logProvider){
             $logProvider.debugEnabled(false);
         }])
         //
-        .run(['$log', '$timeout', '$rootScope', 'npL10n', function($log, $timeout, $rootScope, npL10n){
+        .run(['$log', '$timeout', '$rootScope', 'npL10n', 'npAutokadHelper', function($log, $timeout, $rootScope, npL10n, npAutokadHelper){
             //
             _.extend($rootScope, {
                 app: {
@@ -61,12 +57,20 @@ define(function(require) {'use strict';
                         $rootScope.app.ready = true;
                     }
                 });
-            });
 
-            // test
-            // $('body').click(function(){
-            //     $rootScope.$emit('np-autokad-do-clear');
-            // });
+                // test
+                // $(document).click(function(){
+                //     $rootScope.$emit('np-autokad-do-clear');
+                //
+                //     npAutokadHelper.getCaseCount(search.name,
+                //         function(result){
+                //             $log.info('getCaseCount...', result);
+                //         },
+                //         function(){
+                //             $log.warn('getCaseCount... error');
+                //         });
+                // });
+            });
         }]);
     //
 
