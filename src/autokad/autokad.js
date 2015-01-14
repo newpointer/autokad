@@ -348,8 +348,6 @@ define(function(require) {'use strict';
                     return $sce.trustAsHtml(text);
                 }
 
-                console.log('<<< query...', query);
-
                 var ignorePattern   = '[\\s"«»]+',
                 ignoreRegexp    = new RegExp(ignorePattern, ''),
                 queries         = query.split(ignoreRegexp),
