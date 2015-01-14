@@ -147,24 +147,30 @@ define(function(require) {'use strict';
              *
              */
             function getCaseCount(query, success, error) {
-                var result, request;
+                if (_.isBlank(query)) {
+                    $log.warn('getCaseCount... error: query is blank');
+                    errorCallback();
+                    return null;
+                }
 
-                request = npAutokadResource.kadSearch({
+                var request = npAutokadResource.kadSearch({
                     r: {
                         q: query
                     },
                     success: function(data, status){
-                        result = data['Result']['TotalCount'];
+                        var result = data['Result']['TotalCount'];
                         if (_.isFunction(success)) {
                             success(result);
                         }
                     },
-                    error: function(data, status){
-                        if (_.isFunction(error)) {
-                            error();
-                        }
-                    }
+                    error: errorCallback
                 });
+
+                function errorCallback() {
+                    if (_.isFunction(error)) {
+                        error();
+                    }
+                }
 
                 return request;
             }
