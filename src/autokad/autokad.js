@@ -247,7 +247,7 @@ define(function(require) {'use strict';
                     }
 
                     function hasResultItems(result) {
-                        return _.isObject(result) && !_.isEmpty(result['Items']);
+                        return _.isObject(result) && _.isArray(result['Items']);
                     }
 
                     function initSearch(params) {
