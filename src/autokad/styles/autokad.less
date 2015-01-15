@@ -17,13 +17,27 @@
     top: 0;
     right: 0;
     bottom: 0;
-
-    background-color: @defaultBackgroundColor;
-    opacity: 0.7;
-    filter: alpha(opacity=70);
+    text-align: center;
+}
+[np-autokad] .mask .message-box {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+}
+[np-autokad] .mask .message {
+    margin-left: -100%;
 }
 [np-autokad].loading .mask {
     display: block;
+}
+[np-autokad].loading .autokad-content {
+    opacity: 0.2;
+    filter: alpha(opacity=20);
+}
+
+[np-autokad] .search-header {
+    margin-top: 5px;
+    margin-bottom: 0;
 }
 
 [np-autokad] .filters {
@@ -103,4 +117,8 @@
     float: right;
     padding-left: 10px;
     text-align: right;
+}
+
+[np-autokad] .search-result .empty-result {
+    padding-top: 20px;
 }

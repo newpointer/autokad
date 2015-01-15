@@ -28,7 +28,7 @@ define(function(require) {'use strict';
             _.extend($rootScope, {
                 app: {
                     title: null,
-                    ready: false
+                    ready: true
                 },
                 isAppReady: function() {
                     return $rootScope.app.ready;
@@ -40,21 +40,20 @@ define(function(require) {'use strict';
                 var params  = purl().param();
 
                 var search = {
-                    name: params['search'],
-                    ogrn: params['ogrn'],
-                    inn: params['inn']
+                    sources: [
+                        {key: 'company_name', value: params['search']},
+                        {key: 'company_ogrn', value: params['ogrn']},
+                        {key: 'company_inn', value: params['inn']}
+                    ]
                 };
 
-                $rootScope.app.title = search.name;
+                $rootScope.app.title = params['search'];
 
                 $rootScope.$emit('np-autokad-do-search', {
                     search: search,
-                    success: function() {
-                        $rootScope.app.ready = true;
-                    },
+                    success: function() {},
                     error: function() {
                         $log.warn('search error, search options:', search);
-                        $rootScope.app.ready = true;
                     }
                 });
 
