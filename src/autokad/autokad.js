@@ -201,10 +201,10 @@ define(function(require) {'use strict';
                         },
                         pager: new Pager(),
                         getTotal: function() {
-                            return search.result.TotalCount || 0;
+                            return hasSearchResult() ? search.result.TotalCount || 0 : 0;
                         },
                         isEmptyResult: function() {
-                            return !search.result.TotalCount;
+                            return !search.getTotal();
                         },
                         isNoResult: function() {
                             return search.noResult;
@@ -242,6 +242,14 @@ define(function(require) {'use strict';
                         }
                     }, true);
 
+                    function hasSearchResult() {
+                        return !_.isEmpty(search.result);
+                    }
+
+                    function hasResultItems(result) {
+                        return _.isObject(result) && !_.isEmpty(result['Items']);
+                    }
+
                     function initSearch(params) {
                         search.watch = false;
                         search.params = _.extend({}, npAutokadHelper.getDefaultSearchParams(), params);
@@ -263,6 +271,8 @@ define(function(require) {'use strict';
                         }
 
                         function complete(hasError, result) {
+                            hasError = hasError || !hasResultItems(result);
+
                             if (!hasError) {
                                 search.result = result;
 
@@ -271,9 +281,13 @@ define(function(require) {'use strict';
 
                                     npAutokadHelper.loading(element, function(done){
                                         searchRequest(function(hasError, result){
-                                            _.each(result.Items, function(item){
-                                                search.result.Items.push(item);
-                                            });
+                                            hasError = hasError || !hasResultItems(result);
+
+                                            if (!hasError) {
+                                                _.each(result.Items, function(item){
+                                                    search.result.Items.push(item);
+                                                });
+                                            }
 
                                             callback(noMore(hasError, result));
                                             done();

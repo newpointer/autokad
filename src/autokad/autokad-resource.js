@@ -51,7 +51,14 @@ define(function(require) {'use strict';
                             "x-date-format": 'iso',
                             "X-Requested-With": 'XMLHttpRequest'
                         }
-                    }, null, options);
+                    }, {
+                        responseProcess: function(data) {
+                            if (_.isEmpty(data.Result)) {
+                                $log.warn('kadSearch... <Result> is empty:', data);
+                            }
+                            return data;
+                        }
+                    }, options);
                 }
             };
         }]);

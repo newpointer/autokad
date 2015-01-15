@@ -195,4 +195,12 @@ X-Powered-By:ASP.NET
     "Success": true,
     "ServerDate": "2014-12-27T15:51:21"
 }
+
+// При ошибке
+{
+    "Result": null,
+    "Message": "внутренняя ошибка сервера",
+    "Success": false,
+    "ServerDate": "2014-12-25T20:35:00"
+}
 ```
