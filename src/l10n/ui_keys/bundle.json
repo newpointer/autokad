@@ -6,7 +6,23 @@
         "ruleCode": "n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2",
         "cldrFormat": "one{0}few{1}many{2}other{2}"
       }
-    }
+    },
+    "autokad_search_source::company_inn": [
+      null,
+      "по ИНН"
+    ],
+    "autokad_search_source::company_name": [
+      null,
+      "по наименованию"
+    ],
+    "autokad_search_source::company_ogrn": [
+      null,
+      "по ОГРН"
+    ],
+    "autokad_search_source::individual_name": [
+      null,
+      "по ФИО"
+    ]
   },
   "en": {
     "": {
@@ -15,6 +31,22 @@
         "ruleCode": "n != 1",
         "cldrFormat": "one{0}other{1}"
       }
-    }
+    },
+    "autokad_search_source::company_inn": [
+      null,
+      "по ИНН"
+    ],
+    "autokad_search_source::company_name": [
+      null,
+      "по наименованию"
+    ],
+    "autokad_search_source::company_ogrn": [
+      null,
+      "по ОГРН"
+    ],
+    "autokad_search_source::individual_name": [
+      null,
+      "по ФИО"
+    ]
   }
 }

@@ -1,1 +1,5 @@
-# Укажите ключи
+# Источники поиска
+autokad_search_source::company_name
+autokad_search_source::company_ogrn
+autokad_search_source::company_inn
+autokad_search_source::individual_name

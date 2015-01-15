@@ -1,92 +1,89 @@
-<div class="mask"></div>
-<h5 class="search-header">
-    <div class="" ng-hide="search.isEmptyResult()"><ng-pluralize count="count = search.getTotal()" when="::${_tr("NG_PLURALIZE::KAD_SEARCH_TOTAL")}"></ng-pluralize></div>
-    <div class="" ng-show="search.isEmptyResult()">${_tr("Нет арбитражных дел")}</div>
-</h5>
-<div class="row filters" ng-hide="search.isNoResult()">
-    <div class="span3 source-filter">
-        <select class="span3" ng-model="search.params.source">
-            <option value="name">${_tr("Искать по наименованию")}</option>
-            <option value="ogrn">${_tr("Искать по ОГРН")}</option>
-            <option value="inn">${_tr("Искать по ИНН")}</option>
-        </select>
+<div class="mask"><div class="message-box"><span class="message">${_tr("Ожидайте...")}</span></div></div>
+<div class="autokad-content">
+    <div class="row filters">
+        <h5 class="span3 search-header">
+            <div ng-hide="search.isEmptyResult()"><ng-pluralize count="count = search.getTotal()" when="::${_tr("NG_PLURALIZE::KAD_SEARCH_TOTAL")}"></ng-pluralize></div>
+            <div ng-show="search.isEmptyResult()">${_tr("Поиск арбитражных дел...")}</div>
+        </h5>
+        <div class="span3 source-filter">
+            <select class="span3" ng-model="search.params.source">
+                <option ng-repeat="source in search.params.sources track by $index" value="{{$index}}" ng-show="source.value">{{_tr('autokad_search_source::' + source.key)}}</option>
+            </select>
+        </div>
+        <div class="span2 period-filter">
+            <select class="span2" ng-model="search.params.period">
+                <option value="all">${_tr("за все время")}</option>
+                <option value="year">${_tr("за год")}</option>
+                <option value="month">${_tr("за месяц")}</option>
+            </select>
+        </div>
+        <div class="align-right arbitr-link-box">
+            <a class="underline" href="http://kad.arbitr.ru/" target="_blank">${_tr("Картотека арбитражных дел")}</a>
+        </div>
     </div>
-    <div class="span3 period-filter">
-        <select class="span3" ng-model="search.params.period">
-            <option value="all">${_tr("За все время")}</option>
-            <option value="year">${_tr("За последний год")}</option>
-            <option value="month">${_tr("За последний месяц")}</option>
-        </select>
-    </div>
-    <div class="align-right arbitr-link-box">
-        <a class="underline" href="http://kad.arbitr.ru/" target="_blank">${_tr("Картотека арбитражных дел")}</a>
-    </div>
-</div>
-<div class="search-result" ng-hide="search.isNoResult()">
-    <table class="table table-striped" ng-hide="search.isEmptyResult()">
-        <thead>
-            <tr>
-                <th class="case">${_trc("Дело", "Арбитражное дело")}</th>
-                <th class="court">${_trc("Текущая инстанция", "Арбитражное дело")}</th>
-                <th class="plaintiff">${_trc("Истец", "Арбитражное дело")}</th>
-                <th class="respondent">${_trc("Ответчик", "Арбитражное дело")}</th>
-            </tr>
-        </thead>
-        <tbody infinite-scroll="search.pager.nextPage()" infinite-scroll-disabled="search.pager.isDisabled()" infinite-scroll-distance="0" infinite-scroll-immediate-check="false">
-            <tr ng-repeat="item in search.result.Items track by $index">
-                <td>
-                    <!--<div class="td-wrapper">-->
-                        <!--<span class="item-number muted">{{($index + 1) | number}}.</span>-->
+    <div class="search-result">
+        <table class="table table-striped" ng-hide="search.isEmptyResult()">
+            <thead>
+                <tr>
+                    <th class="case">${_trc("Дело", "Арбитражное дело")}</th>
+                    <th class="court">${_trc("Текущая инстанция", "Арбитражное дело")}</th>
+                    <th class="plaintiff">${_trc("Истец", "Арбитражное дело")}</th>
+                    <th class="respondent">${_trc("Ответчик", "Арбитражное дело")}</th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll="search.pager.nextPage()" infinite-scroll-disabled="search.pager.isDisabled()" infinite-scroll-distance="0" infinite-scroll-immediate-check="false">
+                <tr ng-repeat="item in search.result.Items track by $index">
+                    <td>
                         <span class="case-info"><span class="case-type badge">{{_tr(item.CaseType)}}</span><span class="case-date">{{item.Date | date:'dd.MM.yyyy'}}</span></span>
                         <a class="underline case-link" ng-href="http://kad.arbitr.ru/Card/{{item.CaseId}}" target="_blank">{{item.CaseNumber}}</a>
-                    <!--</div>-->
-                </td>
-                <td>
-                    <span class="case-court">{{item.CourtName}}</span>
-                    <span class="case-judge muted">{{item.Judge}}</span>
-                </td>
-                <td>
-                    <div class="participant-first">
-                        <div class="participant-more-info" ng-show="item.Plaintiffs.Count > 1">
-                            <a ng-click="item.__more = !item.__more">{{item.Plaintiffs.Count | number}}...</a>
+                    </td>
+                    <td>
+                        <span class="case-court">{{item.CourtName}}</span>
+                        <span class="case-judge muted">{{item.Judge}}</span>
+                    </td>
+                    <td>
+                        <div class="participant-first">
+                            <div class="participant-more-info" ng-show="item.Plaintiffs.Count > 1">
+                                <a ng-click="item.__more = !item.__more">{{item.Plaintiffs.Count | number}}...</a>
+                            </div>
+                            <div class="participant">
+                                <span class="participant-name" ng-bind-html="item.Plaintiffs.Participants[0].Name | highlightSearch:search.requestData.q"></span>
+                                <span class="participant-address muted">{{item.Plaintiffs.Participants[0].Address}}</span>
+                            </div>
                         </div>
-                        <div class="participant">
-                            <span class="participant-name" ng-bind-html="item.Plaintiffs.Participants[0].Name | highlightSearch:search.requestData.q"></span>
-                            <span class="participant-address muted">{{item.Plaintiffs.Participants[0].Address}}</span>
+                        <div class="participant-more-items" ng-show="item.__more">
+                            <div class="participant" ng-repeat="participant in item.Plaintiffs.Participants track by $index" ng-show="$index > 0">
+                                <span class="participant-name" ng-bind-html="participant.Name | highlightSearch:search.requestData.q"></span>
+                                <span class="participant-address muted">{{participant.Address}}</span>
+                            </div>
+                            <div class="participant-detailed" ng-show="item.Plaintiffs.Count > item.Plaintiffs.Participants.length">
+                                <a class="underline" ng-href="http://kad.arbitr.ru/Card/{{item.CaseId}}" target="_blank">${_tr("Подробнее...")}</a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="participant-more-items" ng-show="item.__more">
-                        <div class="participant" ng-repeat="participant in item.Plaintiffs.Participants track by $index" ng-show="$index > 0">
-                            <span class="participant-name" ng-bind-html="participant.Name | highlightSearch:search.requestData.q"></span>
-                            <span class="participant-address muted">{{participant.Address}}</span>
+                    </td>
+                    <td>
+                        <div class="participant-first">
+                            <div class="participant-more-info" ng-show="item.Respondents.Count > 1">
+                                <a ng-click="item.__more = !item.__more">{{item.Respondents.Count | number}}...</a>
+                            </div>
+                            <div class="participant">
+                                <span class="participant-name" ng-bind-html="item.Respondents.Participants[0].Name | highlightSearch:search.requestData.q"></span>
+                                <span class="participant-address muted">{{item.Respondents.Participants[0].Address}}</span>
+                            </div>
                         </div>
-                        <div class="participant-detailed" ng-show="item.Plaintiffs.Count > item.Plaintiffs.Participants.length">
-                            <a class="underline" ng-href="http://kad.arbitr.ru/Card/{{item.CaseId}}" target="_blank">${_tr("Подробнее...")}</a>
+                        <div class="participant-more-items" ng-show="item.__more">
+                            <div class="participant" ng-repeat="participant in item.Respondents.Participants track by $index" ng-show="$index > 0">
+                                <span class="participant-name" ng-bind-html="participant.Name | highlightSearch:search.requestData.q"></span>
+                                <span class="participant-address muted">{{participant.Address}}</span>
+                            </div>
+                            <div class="participant-detailed" ng-show="item.Respondents.Count > item.Respondents.Participants.length">
+                                <a class="underline" ng-href="http://kad.arbitr.ru/Card/{{item.CaseId}}" target="_blank">${_tr("Подробнее...")}</a>
+                            </div>
                         </div>
-                    </div>
-                </td>
-                <td>
-                    <div class="participant-first">
-                        <div class="participant-more-info" ng-show="item.Respondents.Count > 1">
-                            <a ng-click="item.__more = !item.__more">{{item.Respondents.Count | number}}...</a>
-                        </div>
-                        <div class="participant">
-                            <span class="participant-name" ng-bind-html="item.Respondents.Participants[0].Name | highlightSearch:search.requestData.q"></span>
-                            <span class="participant-address muted">{{item.Respondents.Participants[0].Address}}</span>
-                        </div>
-                    </div>
-                    <div class="participant-more-items" ng-show="item.__more">
-                        <div class="participant" ng-repeat="participant in item.Respondents.Participants track by $index" ng-show="$index > 0">
-                            <span class="participant-name" ng-bind-html="participant.Name | highlightSearch:search.requestData.q"></span>
-                            <span class="participant-address muted">{{participant.Address}}</span>
-                        </div>
-                        <div class="participant-detailed" ng-show="item.Respondents.Count > item.Respondents.Participants.length">
-                            <a class="underline" ng-href="http://kad.arbitr.ru/Card/{{item.CaseId}}" target="_blank">${_tr("Подробнее...")}</a>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <div class="align-center empty-result muted" ng-show="search.isEmptyResult()">${_tr("Арбитражных дел не найдено")}</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="align-center empty-result muted" ng-show="!search.isNoResult() && search.isEmptyResult()">${_tr("Арбитражных дел не найдено")}</div>
+    </div>
 </div>

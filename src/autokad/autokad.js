@@ -33,10 +33,8 @@ define(function(require) {'use strict';
              *
              */
             var DEFAULT_SEARCH_PARAMS = {
-                name: null,
-                ogrn: null,
-                inn: null,
-                source: 'name',
+                sources: [],
+                source: 0,
                 period: 'all',
             };
 
@@ -50,16 +48,8 @@ define(function(require) {'use strict';
             var period = new Period();
 
             var TRANSFORM_SEARCH_PARAMS = {
-                'source': {
-                    'name': function(searchParams, request) {
-                        request['q'] = searchParams['name'];
-                    },
-                    'ogrn': function(searchParams, request) {
-                        request['q'] = searchParams['ogrn'];
-                    },
-                    'inn': function(searchParams, request) {
-                        request['q'] = searchParams['inn'];
-                    }
+                'source': function(value, searchParams, request) {
+                    request['q'] = searchParams.sources[value].value;
                 },
                 'period': {
                     'all': function(searchParams, request) {
@@ -80,7 +70,12 @@ define(function(require) {'use strict';
 
                 _.each(TRANSFORM_SEARCH_PARAMS, function(paramTransform, param){
                     value = searchParams[param];
-                    paramTransform[value](searchParams, requestData);
+
+                    if (_.isFunction(paramTransform)) {
+                        paramTransform(value, searchParams, requestData);
+                    } else {
+                        paramTransform[value](searchParams, requestData);
+                    }
                 });
 
                 return requestData;
@@ -226,13 +221,11 @@ define(function(require) {'use strict';
                         initSearch(options.search);
                         doSearch(
                             function(){
-                                search.noResult = search.isEmptyResult();
                                 if (_.isFunction(options.success)) {
                                     options.success();
                                 }
                             },
                             function(){
-                                search.noResult = true;
                                 if (_.isFunction(options.error)) {
                                     options.error();
                                 }
@@ -316,13 +309,17 @@ define(function(require) {'use strict';
                     }
 
                     function searchRequest(callback) {
+                        search.noResult = true;
+
                         search.request = npAutokadResource.kadSearch({
                             r: search.requestData,
                             previousRequest: search.request,
                             success: function(data, status){
+                                search.noResult = false;
                                 callback(false, data.Result);
                             },
                             error: function(data, status){
+                                search.noResult = false;
                                 callback(true);
                             }
                         });
