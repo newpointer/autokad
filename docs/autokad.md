@@ -1,13 +1,143 @@
 # autokad
 
-Доступ к агрегированной информации об арбитражных делах
-с участием ЮЛ без перехода на сайт [kad.arbitr.ru](http://kad.arbitr.ru/)
+Доступ к агрегированной информации об арбитражных делах без перехода на сайт [kad.arbitr.ru](http://kad.arbitr.ru/)
 
 [Скриншот сервиса kad.arbitr.ru](../docs/images/kad.arbitr.ru-20141227.png)
 
 Для доступа к данным об арбитражных делах используется внутреннее API
 сервиса [kad.arbitr.ru](http://kad.arbitr.ru/)
 
+## Использование
+
+### Приложение nkb-app
+
+[Дистрибутив](dist/nkb-app)
+
+Задеплоить приложение, например, по контексту `/autokad`.
+
+Приложение ожидает параметры в `url`:
+
+```
+/autokad/?search=<company_name>&ogrn=<company_ogrn>&inn=<company_inn>
+```
+
+* `company_name` - Наименование компании. Обязательный параметр.
+* `company_ogrn` - ОГРН компании. Необязательный параметр.
+* `company_inn` - ИНН компании. Необязательный параметр.
+
+Пример:
+
+```
+/autokad/?search=ОАО%20"НК%20"Роснефть"&ogrn=1027700043502&inn=7706107510
+```
+
+[Скриншот приложения](../docs/images/autokad-20150116-1.png)
+
+### Компонент autokad
+
+[autokad](src/autokad)
+
+* RequireJS package
+* RequireJS/Angular modules
+
+#### Bower
+
+`bower install git://github.com/newpointer/autokad.git`
+
+#### RequireJS
+
+```javascript
+// RequireJS package
+packages: [..., {
+    name: 'autokad',
+    location: 'bower_components/nullpointer-autokad/autokad',
+    main: 'autokad'
+], ...}
+```
+
+#### Angular
+
+```javascript
+// RequireJS/Angular module
+var autokad = require('autokad');
+
+// Angular dependencies
+angular.module('your_module', [autokad.name]);
+```
+
+##### `npAutokadHelper` Factory
+
+```javascript
+/*
+ * Получение количества арбитражных дел
+ */
+npAutokadHelper.getCaseCount(
+    // Что искать?
+    // (String|Number). Обязательный параметр.
+    query,
+    // Success callback. Обязательный параметр.
+    // result (Number) - количество арбитражных дел
+    function(result) {
+        // ...
+    },
+    // Error callback. Опциональный параметр.
+    function() {
+        // ...
+    });
+```
+
+##### `npAutokad` Directive
+
+##### HTML
+
+```html
+<div np-autokad></div>
+```
+
+##### JavaScript
+
+```javascript
+/*
+ * Инициация отображения арбитражных дел
+ * В директиве np-autokad отобразится результат поиска арбитражных дел
+ */
+$rootScope.$emit('np-autokad-do-search', {
+    search: {
+        sources: [
+            // Объект параметров поиска.
+            // Обязятельно наличие хотя бы одного объекта параметров поиска.
+            // По первому объекту параметров поиска будет инициирован поиск.
+            {
+                // i18n-ключ.
+                // Перевод по данному ключу отобразится в выпадающем списке фильтра поиска.
+                key: '<key>',
+                // Что искать?
+                value: '<value>'
+            },
+            ...,
+            // Опциональные объекты параметров поиска.
+            // Данные объекты будут использованы в фильтре поиска.
+            {key: '<key_n>', value: '<value_n>'}
+            // Например:
+            //  {key: 'company_name', value: 'ОАО НК "Роснефть"'},
+            //  {key: 'company_ogrn', value: 1027700043502}
+        ]
+    }
+});
+
+/*
+ * Очистка результата поиска арбитражных дел
+ */
+$rootScope.$emit('np-autokad-do-clear');
+```
+
+#### l10n
+
+[Бандлы перевода](src/l10n)
+
+### Поддержка браузеров
+
+* IE9+
 
 ## Использование API сервиса kad.arbitr.ru
 
