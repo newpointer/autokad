@@ -1,0 +1,12 @@
+{
+    "Message": "",
+    "Success": true,
+    "ServerDate": "2014-12-25T20:35:00",
+    "Result": {
+        "PagesCount": 0,
+        "Page": 1,
+        "PageSize": 25,
+        "TotalCount": 0,
+        "Items": []
+    }
+}

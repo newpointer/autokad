@@ -153,7 +153,13 @@ define(function(require) {'use strict';
                         q: query
                     },
                     success: function(data, status){
-                        var result = data['Result']['TotalCount'];
+                        var result = data['Result'] && data['Result']['TotalCount'];
+
+                        if (!_.isNumber(result)) {
+                            errorCallback();
+                            return;
+                        }
+
                         if (_.isFunction(success)) {
                             success(result);
                         }
@@ -209,7 +215,11 @@ define(function(require) {'use strict';
                         isNoResult: function() {
                             return search.noResult;
                         },
+                        hasError: function() {
+                            return search.error;
+                        },
                         noResult: true,
+                        error: null,
                         watch: true
                     };
 
@@ -298,8 +308,12 @@ define(function(require) {'use strict';
                                 if (_.isFunction(success)) {
                                     success();
                                 }
-                            } else if (_.isFunction(error)) {
-                                error();
+                            } else {
+                                search.error = true;
+
+                                if (_.isFunction(error)) {
+                                    error();
+                                }
                             }
                         }
 
@@ -320,6 +334,7 @@ define(function(require) {'use strict';
                         search.pager.reset(true, null);
                         search.result = {};
                         search.noResult = true;
+                        search.error = null;
                     }
 
                     function searchRequest(callback) {
@@ -330,10 +345,12 @@ define(function(require) {'use strict';
                             previousRequest: search.request,
                             success: function(data, status){
                                 search.noResult = false;
+                                search.error = null;
                                 callback(false, data.Result);
                             },
                             error: function(data, status){
                                 search.noResult = false;
+                                search.error = true;
                                 callback(true);
                             }
                         });
