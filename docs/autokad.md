@@ -11,7 +11,7 @@
 
 ### Приложение nkb-app
 
-[Дистрибутив](dist/nkb-app)
+[Дистрибутив](../dist/nkb-app)
 
 Задеплоить приложение, например, по контексту `/autokad`.
 
@@ -35,7 +35,7 @@
 
 ### Компонент autokad
 
-[autokad](src/autokad)
+[autokad](../src/autokad)
 
 * RequireJS package
 * RequireJS/Angular modules
@@ -133,7 +133,7 @@ $rootScope.$emit('np-autokad-do-clear');
 
 #### l10n
 
-[Бандлы перевода](src/l10n)
+[Бандлы перевода](../src/l10n)
 
 ### Поддержка браузеров
 
@@ -190,7 +190,7 @@ X-Requested-With: XMLHttpRequest
 {
     // Парметры поиска участника дела (Array<Object>)
     "Sides": [{
-        // Наименование участника (ИНН|ОГРН)  (String)
+        // Наименование участника|ИНН|ОГРН (String)
         "Name": "ОАО \"НК \"Роснефть\"",
 
         // Статус участника (Number):
