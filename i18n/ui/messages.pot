@@ -14,35 +14,27 @@ msgstr ""
 "CLDR_PLURAL_FORMS_FORMAT: one{0}few{1}many{2}other{2}\n"
 
 #: ../src/autokad/views/autokad.html:1
+msgid "Ожидайте..."
+msgstr ""
+
+#: ../src/autokad/views/autokad.html:1
 msgid "NG_PLURALIZE::KAD_SEARCH_TOTAL"
 msgstr ""
 
 #: ../src/autokad/views/autokad.html:1
-msgid "Нет арбитражных дел"
+msgid "Поиск арбитражных дел..."
 msgstr ""
 
 #: ../src/autokad/views/autokad.html:1
-msgid "Искать по наименованию"
+msgid "за все время"
 msgstr ""
 
 #: ../src/autokad/views/autokad.html:1
-msgid "Искать по ОГРН"
+msgid "за год"
 msgstr ""
 
 #: ../src/autokad/views/autokad.html:1
-msgid "Искать по ИНН"
-msgstr ""
-
-#: ../src/autokad/views/autokad.html:1
-msgid "За все время"
-msgstr ""
-
-#: ../src/autokad/views/autokad.html:1
-msgid "За последний год"
-msgstr ""
-
-#: ../src/autokad/views/autokad.html:1
-msgid "За последний месяц"
+msgid "за месяц"
 msgstr ""
 
 #: ../src/autokad/views/autokad.html:1
@@ -76,6 +68,21 @@ msgstr ""
 
 #: ../src/autokad/views/autokad.html:1
 msgid "Арбитражных дел не найдено"
+msgstr ""
+
+#: ../src/autokad/views/autokad.html:1
+msgctxt "Поиск в картотеке арбитражных дел временно недоступен"
+msgid "Поиск в"
+msgstr ""
+
+#: ../src/autokad/views/autokad.html:1
+msgctxt "Поиск в картотеке арбитражных дел временно недоступен"
+msgid "картотеке арбитражных дел"
+msgstr ""
+
+#: ../src/autokad/views/autokad.html:1
+msgctxt "Поиск в картотеке арбитражных дел временно недоступен"
+msgid "временно недоступен"
 msgstr ""
 
 #: ../src/nkb-app/index.html:1

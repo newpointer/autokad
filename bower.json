@@ -1,6 +1,6 @@
 {
   "name": "autokad",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "autokad frontend",
   "main": "*",
   "ignore": [".*", "bin", "data", "test", "tmp", "Gruntfile.js", "package.json", "README.md"],
@@ -64,6 +64,6 @@
   "private": true,
   "resolutions": {
     "underscore": "1.5.*",
-    "jquery": ">=1.6"
+    "jquery": "2.1.*"
   }
 }

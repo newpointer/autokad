@@ -84,6 +84,11 @@
                 </tr>
             </tbody>
         </table>
-        <div class="align-center empty-result muted" ng-show="!search.isNoResult() && search.isEmptyResult()">${_tr("Арбитражных дел не найдено")}</div>
+        <div class="align-center empty-result muted" ng-show="!search.isNoResult() && search.isEmptyResult() && !search.hasError()">${_tr("Арбитражных дел не найдено")}</div>
+        <div class="align-center empty-result" ng-show="search.hasError()">
+            ${_trc("Поиск в", "Поиск в картотеке арбитражных дел временно недоступен")}
+            <a class="underline" href="http://kad.arbitr.ru/" target="_blank">${_trc("картотеке арбитражных дел", "Поиск в картотеке арбитражных дел временно недоступен")}</a> 
+            ${_trc("временно недоступен", "Поиск в картотеке арбитражных дел временно недоступен")}
+        </div>
     </div>
 </div>

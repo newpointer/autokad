@@ -34,30 +34,6 @@ msgid "Дело"
 msgstr ""
 
 #: ../src/autokad/views/autokad.html:1
-msgid "За все время"
-msgstr ""
-
-#: ../src/autokad/views/autokad.html:1
-msgid "За последний год"
-msgstr ""
-
-#: ../src/autokad/views/autokad.html:1
-msgid "За последний месяц"
-msgstr ""
-
-#: ../src/autokad/views/autokad.html:1
-msgid "Искать по ИНН"
-msgstr ""
-
-#: ../src/autokad/views/autokad.html:1
-msgid "Искать по ОГРН"
-msgstr ""
-
-#: ../src/autokad/views/autokad.html:1
-msgid "Искать по наименованию"
-msgstr ""
-
-#: ../src/autokad/views/autokad.html:1
 msgctxt "Арбитражное дело"
 msgid "Истец"
 msgstr ""
@@ -67,9 +43,8 @@ msgid "Картотека арбитражных дел"
 msgstr ""
 
 #: ../src/autokad/views/autokad.html:1
-#, fuzzy
-msgid "Нет арбитражных дел"
-msgstr "Arbitration Cases — NCB"
+msgid "Ожидайте..."
+msgstr ""
 
 #: ../src/autokad/views/autokad.html:1
 msgctxt "Арбитражное дело"
@@ -81,6 +56,39 @@ msgid "Подробнее..."
 msgstr ""
 
 #: ../src/autokad/views/autokad.html:1
+#, fuzzy
+msgid "Поиск арбитражных дел..."
+msgstr "Arbitration Cases — NCB"
+
+#: ../src/autokad/views/autokad.html:1
+msgctxt "Поиск в картотеке арбитражных дел временно недоступен"
+msgid "Поиск в"
+msgstr ""
+
+#: ../src/autokad/views/autokad.html:1
 msgctxt "Арбитражное дело"
 msgid "Текущая инстанция"
 msgstr ""
+
+#: ../src/autokad/views/autokad.html:1
+msgctxt "Поиск в картотеке арбитражных дел временно недоступен"
+msgid "временно недоступен"
+msgstr ""
+
+#: ../src/autokad/views/autokad.html:1
+msgid "за все время"
+msgstr ""
+
+#: ../src/autokad/views/autokad.html:1
+msgid "за год"
+msgstr ""
+
+#: ../src/autokad/views/autokad.html:1
+msgid "за месяц"
+msgstr ""
+
+#: ../src/autokad/views/autokad.html:1
+#, fuzzy
+msgctxt "Поиск в картотеке арбитражных дел временно недоступен"
+msgid "картотеке арбитражных дел"
+msgstr "Arbitration Cases — NCB"
