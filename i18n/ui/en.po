@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "CLDR_PLURAL_FORMS_FORMAT: one{0}other{1}\n"
-"X-Generator: Poedit 1.7.1\n"
+"X-Generator: Poedit 1.7.4\n"
 
 #: ../src/autokad/views/autokad.html:1
 msgid "NG_PLURALIZE::KAD_SEARCH_TOTAL"
@@ -21,12 +21,11 @@ msgstr "{'one': '1 арбитражное дело', 'other': '{{count|number}} 
 #: ../src/nkb-app/index.html:1
 msgctxt "Наименование приложения"
 msgid "Арбитражные дела — НКБ"
-msgstr "Arbitration Cases — NCB"
+msgstr ""
 
 #: ../src/autokad/views/autokad.html:1
-#, fuzzy
 msgid "Арбитражных дел не найдено"
-msgstr "Arbitration Cases — NCB"
+msgstr ""
 
 #: ../src/autokad/views/autokad.html:1
 msgctxt "Арбитражное дело"
@@ -56,9 +55,8 @@ msgid "Подробнее..."
 msgstr ""
 
 #: ../src/autokad/views/autokad.html:1
-#, fuzzy
 msgid "Поиск арбитражных дел..."
-msgstr "Arbitration Cases — NCB"
+msgstr ""
 
 #: ../src/autokad/views/autokad.html:1
 msgctxt "Поиск в картотеке арбитражных дел временно недоступен"
@@ -88,7 +86,6 @@ msgid "за месяц"
 msgstr ""
 
 #: ../src/autokad/views/autokad.html:1
-#, fuzzy
 msgctxt "Поиск в картотеке арбитражных дел временно недоступен"
 msgid "картотеке арбитражных дел"
-msgstr "Arbitration Cases — NCB"
+msgstr ""

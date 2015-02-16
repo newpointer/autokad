@@ -25,7 +25,7 @@ root._RESOURCES_CONFIG = {
         'jquery':               'external_components/jquery/jquery',
         'jquery.cookie':        'external_components/jquery.cookie/jquery.cookie',
 
-        'underscore':           'external_components/underscore/underscore',
+        'lodash':               'external_components/lodash-compat/lodash',
         'underscore.string':    'external_components/underscore.string/underscore.string',
 
         'purl':                 'external_components/purl/purl',
@@ -69,20 +69,6 @@ root._RESOURCES_CONFIG = {
 
         'jquery.cookie': {
             deps: ['jquery']
-        },
-
-        'underscore': {
-            exports: '_',
-            deps: ['underscore.string'],
-            init: function(UnderscoreString) {
-                _.templateSettings = {
-                    evaluate:       /\{%([\s\S]+?)%\}/g,
-                    interpolate:    /\{%=([\s\S]+?)%\}/g,
-                    escape:         /\{%-([\s\S]+?)%\}/g
-                };
-
-                _.mixin(UnderscoreString.exports());
-            }
         }
     },
 
@@ -90,7 +76,7 @@ root._RESOURCES_CONFIG = {
         'l10n/l10n': {
             lang: root._APP_CONFIG.lang,
             'i18n-component': {
-                // Должны отличаться от общих настроек шаблонизатора (например, underscore),
+                // Должны отличаться от общих настроек шаблонизатора,
                 // т.к. смысл шаблонизации i18n:
                 //   только перевести текст шаблона,
                 //   а далее использовать переведённый шаблон с шаблонизатором по умолчанию
@@ -142,7 +128,18 @@ root._RESOURCES_CONFIG = {
 if (typeof define === 'function' && define.amd) {
     requirejs.config(root._RESOURCES_CONFIG);
 
-    require(['app'], function(app){
+    require(['lodash', 'underscore.string', 'app'], function(_, _s, app){
+        // lodash
+        _.templateSettings = {
+            evaluate:       /\{%([\s\S]+?)%\}/g,
+            interpolate:    /\{%=([\s\S]+?)%\}/g,
+            escape:         /\{%-([\s\S]+?)%\}/g
+        };
+
+        // lodash + underscore.string
+        _.mixin(_s.exports());
+
+        // init app
         app.init(document);
     });
 }
