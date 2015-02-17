@@ -4,6 +4,13 @@ var root = this;
  * config
  *
  */
+// i18n
+var i18nBundles = [
+    // internal
+    'text!src/l10n/ui/bundle.json',
+    'text!src/l10n/ui_keys/bundle.json'
+];
+
 //
 root._APP_CONFIG = {
     lang: {
@@ -25,9 +32,6 @@ root._RESOURCES_CONFIG = {
         'jquery':               'external_components/jquery/jquery',
         'jquery.cookie':        'external_components/jquery.cookie/jquery.cookie',
 
-        'underscore':           'external_components/underscore/underscore',
-        'underscore.string':    'external_components/underscore.string/underscore.string',
-
         'purl':                 'external_components/purl/purl',
         'moment':               'external_components/moment/moment'
     },
@@ -45,10 +49,9 @@ root._RESOURCES_CONFIG = {
      * external packages
      *
      */
-     {
-        name: 'i18n',
-        location: 'external_components/nullpointer-i18n',
-        main: 'i18n'
+    {
+        name: 'lodash',
+        location: 'external_components/nullpointer-commons/lodash'
     }, {
         name: 'l10n',
         location: 'external_components/nullpointer-commons/angular/l10n',
@@ -57,6 +60,10 @@ root._RESOURCES_CONFIG = {
         name: 'resource',
         location: 'external_components/nullpointer-commons/angular/resource',
         main: 'resource'
+    }, {
+        name: 'i18n',
+        location: 'external_components/nullpointer-i18n',
+        main: 'i18n'
     }],
 
     shim: {
@@ -69,20 +76,6 @@ root._RESOURCES_CONFIG = {
 
         'jquery.cookie': {
             deps: ['jquery']
-        },
-
-        'underscore': {
-            exports: '_',
-            deps: ['underscore.string'],
-            init: function(UnderscoreString) {
-                _.templateSettings = {
-                    evaluate:       /\{%([\s\S]+?)%\}/g,
-                    interpolate:    /\{%=([\s\S]+?)%\}/g,
-                    escape:         /\{%-([\s\S]+?)%\}/g
-                };
-
-                _.mixin(UnderscoreString.exports());
-            }
         }
     },
 
@@ -90,7 +83,7 @@ root._RESOURCES_CONFIG = {
         'l10n/l10n': {
             lang: root._APP_CONFIG.lang,
             'i18n-component': {
-                // Должны отличаться от общих настроек шаблонизатора (например, underscore),
+                // Должны отличаться от общих настроек шаблонизатора,
                 // т.к. смысл шаблонизации i18n:
                 //   только перевести текст шаблона,
                 //   а далее использовать переведённый шаблон с шаблонизатором по умолчанию
@@ -101,23 +94,17 @@ root._RESOURCES_CONFIG = {
                 },
                 escape: false
             },
-            bundles: [
-                'text!src/l10n/ui/bundle.json',
-                'text!src/l10n/ui_keys/bundle.json'
-            ]
+            bundles: i18nBundles
         }
     },
 
     modules: [{
         name: 'app/main',
         include: [
-            // i18n bundles
-            'text!src/l10n/ui/bundle.json',
-            'text!src/l10n/ui_keys/bundle.json',
             // locales
             'text!angular-locale_ru.js',
             'text!angular-locale_en.js'
-        ]
+        ].concat(i18nBundles)
     }],
 
     map: {
@@ -143,6 +130,7 @@ if (typeof define === 'function' && define.amd) {
     requirejs.config(root._RESOURCES_CONFIG);
 
     require(['app'], function(app){
+        // init app
         app.init(document);
     });
 }
