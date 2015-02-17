@@ -1,7 +1,7 @@
 //
 var fs      = require('fs-extra'),
     path    = require('path'),
-    _       = require('underscore'),
+    _       = require('lodash'),
     i18n    = require('nullpointer-i18n-bin'),
     wb      = require('nullpointer-web-bin');
 
