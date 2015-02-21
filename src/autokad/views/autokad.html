@@ -2,7 +2,7 @@
 <div class="autokad-content">
     <div class="row filters">
         <h5 class="span3 search-header">
-            <div ng-hide="search.isEmptyResult()"><ng-pluralize count="count = search.getTotal()" when="::${_tr("NG_PLURALIZE::KAD_SEARCH_TOTAL")}"></ng-pluralize></div>
+            <div ng-hide="search.isEmptyResult()"><np-pluralize count="search.getTotal()" when="::${_tr("NG_PLURALIZE::KAD_SEARCH_TOTAL")}"></np-pluralize></div>
             <div ng-show="search.isEmptyResult()">${_tr("Поиск арбитражных дел...")}</div>
         </h5>
         <div class="span3 source-filter">
@@ -87,7 +87,7 @@
         <div class="align-center empty-result muted" ng-show="!search.isNoResult() && search.isEmptyResult() && !search.hasError()">${_tr("Арбитражных дел не найдено")}</div>
         <div class="align-center empty-result" ng-show="search.hasError()">
             ${_trc("Поиск в", "Поиск в картотеке арбитражных дел временно недоступен")}
-            <a class="underline" href="http://kad.arbitr.ru/" target="_blank">${_trc("картотеке арбитражных дел", "Поиск в картотеке арбитражных дел временно недоступен")}</a> 
+            <a class="underline" href="http://kad.arbitr.ru/" target="_blank">${_trc("картотеке арбитражных дел", "Поиск в картотеке арбитражных дел временно недоступен")}</a>
             ${_trc("временно недоступен", "Поиск в картотеке арбитражных дел временно недоступен")}
         </div>
     </div>

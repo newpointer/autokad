@@ -16,12 +16,16 @@ define(function(require) {'use strict';
         moment          = require('moment');
                           require('ng-infinite-scroll');
 
+    var extmodules = {
+        'directives':       require('directives')
+    };
+
     var submodules = {
-        autokadResource:    require('./autokad-resource')
+        'autokadResource':  require('./autokad-resource')
     };
 
     //
-    return angular.module('np.autokad', _.pluck(submodules, 'name').concat(['infinite-scroll']))
+    return angular.module('np.autokad', _.pluck(extmodules, 'name').concat(_.pluck(submodules, 'name')).concat(['infinite-scroll']))
         //
         .run([function(){
             template = i18n.translateTemplate(template);

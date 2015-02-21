@@ -12,11 +12,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "CLDR_PLURAL_FORMS_FORMAT: one{0}few{1}many{2}other{2}\n"
-"X-Generator: Poedit 1.7.1\n"
+"X-Generator: Poedit 1.7.4\n"
 
 #: ../src/autokad/views/autokad.html:1
 msgid "NG_PLURALIZE::KAD_SEARCH_TOTAL"
-msgstr "{'one': '{{count|number}} арбитражное дело', 'few': '{{count|number}} арбитражных дела', 'many': '{{count|number}} арбитражных дел', 'other': '{{count|number}} арбитражного дела'}"
+msgstr "{'one': '{} арбитражное дело', 'few': '{} арбитражных дела', 'many': '{} арбитражных дел', 'other': '{} арбитражного дела'}"
 
 #: ../src/nkb-app/index.html:1
 msgctxt "Наименование приложения"

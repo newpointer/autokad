@@ -53,6 +53,10 @@ root._RESOURCES_CONFIG = {
         name: 'lodash',
         location: 'external_components/nullpointer-commons/lodash'
     }, {
+        name: 'directives',
+        location: 'external_components/nullpointer-commons/angular/directives',
+        main: 'directives'
+    }, {
         name: 'l10n',
         location: 'external_components/nullpointer-commons/angular/l10n',
         main: 'l10n'

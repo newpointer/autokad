@@ -16,7 +16,7 @@ msgstr ""
 
 #: ../src/autokad/views/autokad.html:1
 msgid "NG_PLURALIZE::KAD_SEARCH_TOTAL"
-msgstr "{'one': '1 арбитражное дело', 'other': '{{count|number}} арбитражное дело'}"
+msgstr "{'one': '1 арбитражное дело', 'other': '{} арбитражное дело'}"
 
 #: ../src/nkb-app/index.html:1
 msgctxt "Наименование приложения"
