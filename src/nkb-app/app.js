@@ -52,6 +52,7 @@ define(function(require) {'use strict';
 
                 $rootScope.$emit('np-autokad-do-search', {
                     search: search,
+                    searchSource: 0,
                     success: function() {},
                     error: function() {
                         $log.warn('search error, search options:', search);
@@ -62,13 +63,28 @@ define(function(require) {'use strict';
                 // $(document).click(function(){
                 //     $rootScope.$emit('np-autokad-do-clear');
                 //
-                //     npAutokadHelper.getCaseCount(params['search'],
-                //         function(result){
-                //             $log.info('getCaseCount...', result);
-                //         },
-                //         function(){
-                //             $log.warn('getCaseCount... error');
-                //         });
+                //     //
+                //     var caseCountRequest;
+                //
+                //     caseCount();
+                //     caseCount();
+                //
+                //     function caseCount() {
+                //         if (caseCountRequest) {
+                //             caseCountRequest.abort();
+                //         }
+                //
+                //         caseCountRequest = npAutokadHelper.getCaseCount(search,
+                //             function(result, source) {
+                //                 $log.info('getCaseCount... success', result, source);
+                //             },
+                //             function() {
+                //                 $log.warn('getCaseCount... error');
+                //             },
+                //             function() {
+                //                 $log.info('getCaseCount... complete');
+                //             });
+                //     }
                 // });
             });
         }]);

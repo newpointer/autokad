@@ -149,39 +149,118 @@ define(function(require) {'use strict';
              * case
              *
              */
-            function getCaseCount(query, success, error) {
-                if (_.isBlank(query)) {
-                    $log.warn('getCaseCount... error: query is blank');
+            function CaseCountRequest() {
+                var request;
+
+                return {
+                    _setRequest: function(r) {
+                        request = r;
+                    },
+                    abort: function() {
+                        if (request) {
+                            request.abort();
+                        }
+                    }
+                };
+            }
+
+            function getCaseCount(search, success, error, complete) {
+                if (!_.isArray(search.sources) || !_.size(search.sources)) {
+                    $log.warn('getCaseCount... error: search.sources is blank');
                     errorCallback();
                     return null;
                 }
 
-                var request = npAutokadResource.kadSearch({
-                    r: {
-                        q: query
-                    },
-                    success: function(data, status){
-                        var result = data['Result'] && data['Result']['TotalCount'];
+                var sourceIndex         = 0,
+                    sourceCount         = _.size(search.sources),
+                    caseCountRequest    = new CaseCountRequest(),
+                    result              = null,
+                    source, request;
 
-                        if (!_.isNumber(result)) {
+                nextRequest();
+
+                function nextRequest() {
+                    var error   = false,
+                        next    = false,
+                        q;
+
+                    source = search.sources[sourceIndex++];
+                    q = source.value;
+
+                    if (_.isBlank(q)) {
+                        request = null;
+                        result = 0;
+                        next = true;
+                        caseCountRequest._setRequest(request);
+                        check();
+                    } else {
+                        request = npAutokadResource.kadSearch({
+                            r: {
+                                q: q
+                            },
+                            success: function(data) {
+                                result = getResultTotal(data['Result']);
+
+                                if (_.isNull(result)) {
+                                    error = true;
+                                } else if (result === 0) {
+                                    next = true;
+                                }
+                            },
+                            error: function() {
+                                error = true;
+                            }
+                        });
+
+                        caseCountRequest._setRequest(request);
+
+                        request.completePromise.then(function(){
+                            check();
+                        });
+                    }
+
+                    function check() {
+                        if (error) {
                             errorCallback();
-                            return;
+                        } else if (!next || sourceIndex === sourceCount) {
+                            successCallback();
+                        } else if (next) {
+                            nextRequest();
                         }
+                    }
+                }
 
-                        if (_.isFunction(success)) {
-                            success(result);
-                        }
-                    },
-                    error: errorCallback
-                });
+                function successCallback() {
+                    if (_.isFunction(success)) {
+                        success(result, sourceIndex - 1);
+                    }
+                    completeCallback();
+                }
 
                 function errorCallback() {
                     if (_.isFunction(error)) {
                         error();
                     }
+                    completeCallback();
                 }
 
-                return request;
+                function completeCallback() {
+                    if (_.isFunction(complete)) {
+                        complete();
+                    }
+                }
+
+                return caseCountRequest;
+            }
+
+            function getResultTotal(result) {
+                var r = result && result['TotalCount'];
+
+                if (!_.isNumber(r)) {
+                    r = null;
+                }
+
+                return r;
             }
 
             // API
@@ -194,6 +273,7 @@ define(function(require) {'use strict';
                 },
                 buildSearchRequestData: buildSearchRequestData,
                 loading: loading,
+                getResultTotal: getResultTotal,
                 getCaseCount: getCaseCount
             };
         }])
@@ -236,18 +316,67 @@ define(function(require) {'use strict';
                     });
 
                     $rootScope.$on('np-autokad-do-search', function(e, options){
-                        initSearch(options.search);
-                        doSearch(
-                            function(){
-                                if (_.isFunction(options.success)) {
-                                    options.success();
+                        var searchSources       = options.search.sources,
+                            sourceIndex         = options.searchSource || 0,
+                            sourceCount         = _.size(searchSources),
+                            result              = null,
+                            source;
+
+                        nextSearch();
+
+                        function nextSearch() {
+                            var error   = false,
+                                next    = false;
+
+                            source = searchSources[sourceIndex];
+
+                            initSearch(options.search, sourceIndex);
+
+                            sourceIndex++;
+
+                            doSearch(
+                                function() {
+                                    result = npAutokadHelper.getResultTotal(search.result);
+
+                                    if (_.isNull(result)) {
+                                        error = true;
+                                    } else if (result === 0) {
+                                        next = true;
+                                    }
+
+                                    complete();
+                                },
+                                function() {
+                                    error = true;
+                                    complete();
+                                },
+                                function() {
+                                    next = true;
+                                    complete();
+                                });
+
+                            function complete() {
+                                if (error) {
+                                    errorCallback();
+                                } else if (!next || sourceIndex === sourceCount) {
+                                    successCallback();
+                                } else if (next) {
+                                    nextSearch();
                                 }
-                            },
-                            function(){
-                                if (_.isFunction(options.error)) {
-                                    options.error();
-                                }
-                            });
+                            }
+                        }
+
+                        function successCallback() {
+                            if (_.isFunction(options.success)) {
+                                options.success();
+                            }
+                        }
+
+                        function errorCallback() {
+                            if (_.isFunction(options.error)) {
+                                options.error();
+                            }
+                        }
                     });
 
                     scope.$watch('search.params', function(newValue, oldValue) {
@@ -268,17 +397,21 @@ define(function(require) {'use strict';
                         return _.isObject(result) && _.isArray(result['Items']);
                     }
 
-                    function initSearch(params) {
+                    function initSearch(params, searchSource) {
                         search.watch = false;
-                        search.params = _.extend({}, npAutokadHelper.getDefaultSearchParams(), params);
+                        search.params = _.extend({}, npAutokadHelper.getDefaultSearchParams(), params, {
+                            source: searchSource || 0
+                        });
                     }
 
-                    function doSearch(success, error) {
+                    function doSearch(success, error, blankRequest) {
                         resetSearchRequest();
                         search.requestData = npAutokadHelper.buildSearchRequestData(search.params);
 
-                        if (!search.requestData.q) {
-                            complete(true);
+                        if (_.isBlank(search.requestData.q)) {
+                            if (_.isFunction(blankRequest)) {
+                                blankRequest();
+                            }
                         } else {
                             npAutokadHelper.loading(element, function(done){
                                 searchRequest(function(hasError, result){

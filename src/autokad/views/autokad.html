@@ -7,7 +7,7 @@
         </h5>
         <div class="span3 source-filter">
             <select class="span3" ng-model="search.params.source">
-                <option ng-repeat="source in search.params.sources track by $index" value="{{$index}}" ng-show="source.value">{{_tr('autokad_search_source::' + source.key)}}</option>
+                <option ng-repeat="source in search.params.sources track by $index" value="{{$index}}" ng-selected="{{$index === search.params.source}}" ng-show="source.value">{{_tr('autokad_search_source::' + source.key)}}</option>
             </select>
         </div>
         <div class="span2 period-filter">
