@@ -57,13 +57,13 @@ root._RESOURCES_CONFIG = {
         location: 'external_components/nullpointer-commons/angular/directives',
         main: 'directives'
     }, {
-        name: 'l10n',
-        location: 'external_components/nullpointer-commons/angular/l10n',
-        main: 'l10n'
-    }, {
         name: 'resource',
         location: 'external_components/nullpointer-commons/angular/resource',
         main: 'resource'
+    }, {
+        name: 'l10n',
+        location: 'external_components/nullpointer-commons/angular/l10n',
+        main: 'l10n'
     }, {
         name: 'i18n',
         location: 'external_components/nullpointer-i18n',

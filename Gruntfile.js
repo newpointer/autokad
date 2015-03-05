@@ -10,6 +10,7 @@ _.mixin(_d);
 //
 module.exports = function(grunt) {
     webapp.setBuildMeta({
+        APP_BUILD_TYPE: 'production',
         cwd: __dirname,
         name: 'nkb-app',
         rootpath: '/autokad/'

@@ -7,13 +7,14 @@ define(function(require) {'use strict';
                   require('lodash');
 
     var angular = require('angular'),
-        purl    = require('purl');
+        purl    = require('purl'),
+        l10n    = require('l10n');
 
                   require('css!../external_components/bootstrap/css/bootstrap');
                   require('less!./styles/app');
 
     var submodules = {
-        l10n:           require('l10n'),
+        'np.l10n':      require('l10n/np.l10n'),
         autokad:        require('autokad')
     };
 
@@ -23,7 +24,7 @@ define(function(require) {'use strict';
             $logProvider.debugEnabled(false);
         }])
         //
-        .run(['$log', '$timeout', '$rootScope', 'npL10n', 'npAutokadHelper', function($log, $timeout, $rootScope, npL10n, npAutokadHelper){
+        .run(['$log', '$timeout', '$rootScope', 'npAutokadHelper', function($log, $timeout, $rootScope, npAutokadHelper){
             //
             _.extend($rootScope, {
                 app: {
@@ -74,13 +75,12 @@ define(function(require) {'use strict';
     //
 
     return {
-        // TODO promises: l10n, ...?
         init: function(parent) {
-            _.delay(function(){
-                $(function() {
+            $(function() {
+                l10n.initPromise.done(function(){
                     angular.bootstrap(parent, [app.name]);
                 });
-            }, 100);
+            });
         }
     };
 });
