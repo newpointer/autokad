@@ -38,6 +38,26 @@ msgid "за месяц"
 msgstr ""
 
 #: ../src/autokad/views/autokad.html:1
+msgctxt "Тип арбитражного дела"
+msgid "любой тип дела"
+msgstr ""
+
+#: ../src/autokad/views/autokad.html:1
+msgctxt "Тип арбитражного дела"
+msgid "административные"
+msgstr ""
+
+#: ../src/autokad/views/autokad.html:1
+msgctxt "Тип арбитражного дела"
+msgid "гражданские"
+msgstr ""
+
+#: ../src/autokad/views/autokad.html:1
+msgctxt "Тип арбитражного дела"
+msgid "банкротные"
+msgstr ""
+
+#: ../src/autokad/views/autokad.html:1
 msgid "Картотека арбитражных дел"
 msgstr ""
 

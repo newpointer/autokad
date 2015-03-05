@@ -1,7 +1,7 @@
 <div class="mask"><div class="message-box"><span class="message">${_tr("Ожидайте...")}</span></div></div>
 <div class="autokad-content">
     <div class="row filters">
-        <h5 class="span3 search-header">
+        <h5 class="span3 search-header nowrap">
             <div ng-hide="search.isEmptyResult()"><np-pluralize count="search.getTotal()" when="::${_tr("NG_PLURALIZE::KAD_SEARCH_TOTAL")}"></np-pluralize></div>
             <div ng-show="search.isEmptyResult()">${_tr("Поиск арбитражных дел...")}</div>
         </h5>
@@ -17,7 +17,15 @@
                 <option value="month">${_tr("за месяц")}</option>
             </select>
         </div>
-        <div class="align-right arbitr-link-box">
+        <div class="span3 case-type-filter">
+            <select class="span3" ng-model="search.params.caseType">
+                <option value="any">${_trc("любой тип дела", "Тип арбитражного дела")}</option>
+                <option value="A">${_trc("административные", "Тип арбитражного дела")}</option>
+                <option value="G">${_trc("гражданские", "Тип арбитражного дела")}</option>
+                <option value="B">${_trc("банкротные", "Тип арбитражного дела")}</option>
+            </select>
+        </div>
+        <div class="align-right arbitr-link-box nowrap">
             <a class="underline" href="http://kad.arbitr.ru/" target="_blank">${_tr("Картотека арбитражных дел")}</a>
         </div>
     </div>

@@ -69,8 +69,23 @@ msgid "Текущая инстанция"
 msgstr ""
 
 #: ../src/autokad/views/autokad.html:1
+msgctxt "Тип арбитражного дела"
+msgid "административные"
+msgstr ""
+
+#: ../src/autokad/views/autokad.html:1
+msgctxt "Тип арбитражного дела"
+msgid "банкротные"
+msgstr ""
+
+#: ../src/autokad/views/autokad.html:1
 msgctxt "Поиск в картотеке арбитражных дел временно недоступен"
 msgid "временно недоступен"
+msgstr ""
+
+#: ../src/autokad/views/autokad.html:1
+msgctxt "Тип арбитражного дела"
+msgid "гражданские"
 msgstr ""
 
 #: ../src/autokad/views/autokad.html:1
@@ -88,4 +103,9 @@ msgstr ""
 #: ../src/autokad/views/autokad.html:1
 msgctxt "Поиск в картотеке арбитражных дел временно недоступен"
 msgid "картотеке арбитражных дел"
+msgstr ""
+
+#: ../src/autokad/views/autokad.html:1
+msgctxt "Тип арбитражного дела"
+msgid "любой тип дела"
 msgstr ""

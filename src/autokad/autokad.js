@@ -40,6 +40,7 @@ define(function(require) {'use strict';
                 sources: [],
                 source: 0,
                 period: 'all',
+                caseType: 'any'
             };
 
             var DEFAULT_SEARCH_REQUEST_DATA = {
@@ -65,6 +66,9 @@ define(function(require) {'use strict';
                     'month': function(searchParams, request) {
                         request['dateFrom'] = period.isoMonthAgo;
                     }
+                },
+                'caseType': function(value, searchParams, request) {
+                    request['caseType'] = value;
                 }
             };
 

@@ -36,6 +36,7 @@ define(function(require) {'use strict';
                                 "Type": -1,
                                 "ExactMatch": false
                             }],
+                            "CaseType": options.r.caseType !== 'any' ? options.r.caseType : undefined,
                             "DateFrom": options.r.dateFrom || null,
                             "DateTo": options.r.dateTo || null,
                             "Page": options.r.page || 1,
