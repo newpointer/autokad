@@ -24,7 +24,7 @@ define(function(require) {'use strict';
             $logProvider.debugEnabled(false);
         }])
         //
-        .run(['$log', '$timeout', '$rootScope', 'npAutokadHelper', function($log, $timeout, $rootScope, npAutokadHelper){
+        .run(['$log', '$timeout', '$rootScope', 'npL10n', 'npAutokadHelper', function($log, $timeout, $rootScope, npL10n, npAutokadHelper){
             //
             _.extend($rootScope, {
                 app: {
