@@ -535,14 +535,14 @@ define(function(require) {'use strict';
             };
         }])
         //
-        .filter('highlightSearch', ['$sce', function($sce){
+        .filter('highlightSearch', ['$log', '$sce', function($log, $sce){
             return function(text, query){
                 if (_.isBlank(query) || _.isBlank(text) ||
                     !_.isString(query) || !_.isString(text)) {
                     return $sce.trustAsHtml(text);
                 }
 
-                var ignorePattern   = '[\\s"«»]+',
+                var ignorePattern   = '[\\s\'"«»()]+',
                 ignoreRegexp    = new RegExp(ignorePattern, ''),
                 queries         = query.split(ignoreRegexp),
                 q               = '',
@@ -555,7 +555,7 @@ define(function(require) {'use strict';
                     }
                 }
 
-                q = q ? ('["«]?' + q + '["»]?') : '';
+                q = q ? ('[\'"«(]?' + q + '[\'"»)]?') : '';
 
                 text = text.replace(new RegExp(q, 'igm'), '<b>$&</b>');
 
