@@ -40,11 +40,33 @@ define(function(require) {'use strict';
             $timeout(function(){
                 var params  = purl().param();
 
+                var paramsHelper = {
+                    'search': {
+                        value: function() {
+                            return emptyShortString(params['search'], 1);
+                        }
+                    },
+                    'ogrn': {
+                        value: function() {
+                            return emptyShortString(params['ogrn'], 1);
+                        }
+                    },
+                    'inn': {
+                        value: function() {
+                            return emptyShortString(params['inn'], 1);
+                        }
+                    }
+                };
+
+                function emptyShortString(str, shortSize) {
+                    return _.size(str) > shortSize ? str : '';
+                }
+
                 var search = {
                     sources: [
-                        {key: 'company_name', value: params['search']},
-                        {key: 'company_ogrn', value: params['ogrn']},
-                        {key: 'company_inn', value: params['inn']}
+                        {key: 'company_name', value: paramsHelper['search'].value()},
+                        {key: 'company_ogrn', value: paramsHelper['ogrn'].value()},
+                        {key: 'company_inn', value: paramsHelper['inn'].value()}
                     ]
                 };
 
