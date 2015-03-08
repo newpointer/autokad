@@ -11,13 +11,15 @@ define(function(require) {'use strict';
 
                           require('jquery');
                           require('lodash');
+
     var i18n            = require('i18n'),
         angular         = require('angular'),
         moment          = require('moment');
+
                           require('ng-infinite-scroll');
 
     var extmodules = {
-        'directives':       require('directives')
+        'np.directives': require('np.directives')
     };
 
     var submodules = {

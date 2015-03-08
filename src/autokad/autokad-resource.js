@@ -7,7 +7,7 @@ define(function(require) {'use strict';
 
                   require('lodash');
     var angular = require('angular');
-                  require('resource');
+                  require('np.resource');
 
     return angular.module('np.autokad-resource', ['np.resource'])
         //

@@ -8,13 +8,13 @@ define(function(require) {'use strict';
 
     var angular = require('angular'),
         purl    = require('purl'),
-        l10n    = require('l10n');
+        l10n    = require('np.l10n');
 
                   require('css!../external_components/bootstrap/css/bootstrap');
                   require('less!./styles/app');
 
     var submodules = {
-        'np.l10n':      require('l10n/np.l10n'),
+        'np.l10n':      require('np.l10n/np.l10n'),
         autokad:        require('autokad')
     };
 
