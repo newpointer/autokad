@@ -16,7 +16,7 @@ msgstr ""
 
 #: ../src/autokad/views/autokad.html:1
 msgid "NG_PLURALIZE::KAD_SEARCH_TOTAL"
-msgstr "{'one': '1 арбитражное дело', 'other': '{{count|number}} арбитражное дело'}"
+msgstr "{'one': '1 арбитражное дело', 'other': '{} арбитражное дело'}"
 
 #: ../src/nkb-app/index.html:1
 msgctxt "Наименование приложения"
@@ -69,8 +69,23 @@ msgid "Текущая инстанция"
 msgstr ""
 
 #: ../src/autokad/views/autokad.html:1
+msgctxt "Тип арбитражного дела"
+msgid "административные"
+msgstr ""
+
+#: ../src/autokad/views/autokad.html:1
+msgctxt "Тип арбитражного дела"
+msgid "банкротные"
+msgstr ""
+
+#: ../src/autokad/views/autokad.html:1
 msgctxt "Поиск в картотеке арбитражных дел временно недоступен"
 msgid "временно недоступен"
+msgstr ""
+
+#: ../src/autokad/views/autokad.html:1
+msgctxt "Тип арбитражного дела"
+msgid "гражданские"
 msgstr ""
 
 #: ../src/autokad/views/autokad.html:1
@@ -88,4 +103,9 @@ msgstr ""
 #: ../src/autokad/views/autokad.html:1
 msgctxt "Поиск в картотеке арбитражных дел временно недоступен"
 msgid "картотеке арбитражных дел"
+msgstr ""
+
+#: ../src/autokad/views/autokad.html:1
+msgctxt "Тип арбитражного дела"
+msgid "любой тип дела"
 msgstr ""

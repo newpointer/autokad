@@ -2,66 +2,14 @@
 
 > Арбитражные дела
 
-## Окружение
+## [Сборка проекта](https://github.com/newpointer/web-app)
 
-* node.js 0.10.x+
-* npm 1.3.x+
-* grunt-cli `npm install grunt-cli -g`
-* bower `npm install bower -g`
+## Файлы дистрибутивов
 
+### nkb-app
 
-## Инициализация
-
-Установка зависимостей проекта, зависимостей модуля
-
-    npm install
-    grunt init
-
-
-## Проверка кода
-
-    grunt jshint
-
-
-## i18n
-
-Сбор ключей перевода, формирование бандлов перевода
-
-[nullpointer-i18n-bin/docs/build.md](https://github.com/newpointer/i18n-bin/blob/master/docs/build.md)
-
-    grunt i18n
-
-
-## Сборка
-
-Установка зависимостей модуля, проверка кода, оптимизация, дистрибутивы
-
-    grunt build
-
-### Файлы дистрибутивов
-
-#### nkb-app
-
-Приложение НКБ
+[Приложение НКБ](http://www.creditnet.ru/autokad/?action=view&search=%D0%9E%D0%90%D0%9E%20%22%D0%93%D0%B0%D0%B7%D0%BF%D1%80%D0%BE%D0%BC%22&inn=7736050003&ogrn=1027700070518)
 
 [Дистрибутив](dist/nkb-app)
-
-## Очистка
-
-Удаление зависимостей проекта
-
-    grunt clean:deps
-
-Удаление сборки
-
-    grunt clean:target
-
-## Полная пересборка
-
-Очистка, обновление зависимостей проекта, сборка
-
-    grunt clean
-    npm install
-    grunt build
 
 ## [Документация](./docs/autokad.md)

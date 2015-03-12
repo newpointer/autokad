@@ -53,13 +53,17 @@ root._RESOURCES_CONFIG = {
         name: 'lodash',
         location: 'external_components/nullpointer-commons/lodash'
     }, {
-        name: 'l10n',
-        location: 'external_components/nullpointer-commons/angular/l10n',
-        main: 'l10n'
+        name: 'np.directives',
+        location: 'external_components/nullpointer-commons/angular/directives',
+        main: 'directives'
     }, {
-        name: 'resource',
+        name: 'np.resource',
         location: 'external_components/nullpointer-commons/angular/resource',
         main: 'resource'
+    }, {
+        name: 'np.l10n',
+        location: 'external_components/nullpointer-commons/angular/l10n',
+        main: 'l10n'
     }, {
         name: 'i18n',
         location: 'external_components/nullpointer-i18n',
@@ -80,7 +84,7 @@ root._RESOURCES_CONFIG = {
     },
 
     config: {
-        'l10n/l10n': {
+        'np.l10n/l10n': {
             lang: root._APP_CONFIG.lang,
             'i18n-component': {
                 // Должны отличаться от общих настроек шаблонизатора,

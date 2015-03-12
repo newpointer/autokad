@@ -1,6 +1,6 @@
 {
     "name": "autokad",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "description": "autokad frontend",
 
     "author": {
@@ -15,16 +15,14 @@
     },
 
     "devDependencies": {
-        "grunt": "~0.4.2",
-        "grunt-contrib-clean": "~0.5",
-        "grunt-contrib-jshint": "~0.10",
-        "grunt-contrib-copy": "~0.5.0",
-        "grunt-bower-task": "~0.4",
+        "grunt": "*",
+        "grunt-contrib-clean": "*",
+        "grunt-contrib-jshint": "*",
+        "grunt-contrib-copy": "*",
+        "grunt-bower-task": "*",
 
-        "fs-extra": "0.8.x",
-        "lodash": "3.*",
-
-        "nullpointer-i18n-bin": "newpointer/i18n-bin.git",
-        "nullpointer-web-bin": "newpointer/web-bin.git"
+        "lodash": "*",
+        "lodash-deep": "*",
+        "nullpointer-web-app": "newpointer/web-app.git"
     }
 }
