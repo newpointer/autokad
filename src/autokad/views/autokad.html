@@ -5,20 +5,20 @@
             <div ng-hide="search.isEmptyResult()"><np-pluralize count="search.getTotal()" when="::${_tr("NG_PLURALIZE::KAD_SEARCH_TOTAL")}"></np-pluralize></div>
             <div ng-show="search.isEmptyResult()">${_tr("Поиск арбитражных дел...")}</div>
         </h5>
-        <div class="span3 source-filter">
-            <select class="span3" ng-model="search.params.source">
+        <div class="span-x source-filter">
+            <select class="span-x" ng-model="search.params.source">
                 <option ng-repeat="source in search.params.sources track by $index" value="{{$index}}" ng-selected="$index === search.params.source" ng-show="source.value">{{_tr('autokad_search_source::' + source.key)}}</option>
             </select>
         </div>
-        <div class="span2 period-filter">
-            <select class="span2" ng-model="search.params.period">
+        <div class="span-x period-filter">
+            <select class="span-x" ng-model="search.params.period">
                 <option value="all">${_tr("за все время")}</option>
                 <option value="year">${_tr("за год")}</option>
                 <option value="month">${_tr("за месяц")}</option>
             </select>
         </div>
-        <div class="span3 case-type-filter">
-            <select class="span3" ng-model="search.params.caseType">
+        <div class="span-x case-type-filter">
+            <select class="span-x" ng-model="search.params.caseType">
                 <option value="any">${_trc("любой тип дела", "Тип арбитражного дела")}</option>
                 <option value="A">${_trc("административные", "Тип арбитражного дела")}</option>
                 <option value="G">${_trc("гражданские", "Тип арбитражного дела")}</option>

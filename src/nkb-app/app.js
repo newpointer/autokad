@@ -46,6 +46,11 @@ define(function(require) {'use strict';
                             return emptyShortString(params['search'], 1);
                         }
                     },
+                    'fullName': {
+                        value: function() {
+                            return emptyShortString(params['fullName'], 1);
+                        }
+                    },
                     'ogrn': {
                         value: function() {
                             return emptyShortString(params['ogrn'], 1);
@@ -65,6 +70,7 @@ define(function(require) {'use strict';
                 var search = {
                     sources: [
                         {key: 'company_name', value: paramsHelper['search'].value()},
+                        {key: 'company_full_name', value: paramsHelper['fullName'].value()},
                         {key: 'company_ogrn', value: paramsHelper['ogrn'].value()},
                         {key: 'company_inn', value: paramsHelper['inn'].value()}
                     ]
