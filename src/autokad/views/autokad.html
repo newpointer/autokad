@@ -39,7 +39,7 @@
                     <th class="respondent">${_trc("Ответчик", "Арбитражное дело")}</th>
                 </tr>
             </thead>
-            <tbody infinite-scroll="search.pager.nextPage()" infinite-scroll-disabled="search.pager.isDisabled()" infinite-scroll-distance="0" infinite-scroll-immediate-check="false">
+            <tbody infinite-scroll="search.pager.nextPage()" infinite-scroll-disabled="search.pager.isDisabled()" infinite-scroll-distance="0" infinite-scroll-immediate-check="false" infinite-scroll-container="scrollContainer">
                 <tr ng-repeat="item in search.result.Items track by $index">
                     <td>
                         <span class="case-info"><span class="case-type badge">{{_tr(item.CaseType)}}</span><span class="case-date">{{item.Date | date:'dd.MM.yyyy'}}</span></span>

@@ -284,7 +284,9 @@ define(function(require) {'use strict';
             return {
                 restrict: 'A',
                 template: template,
-                scope: {},
+                scope: {
+                    scrollContainer: '=npAutokadScrollContainer'
+                },
                 link: function(scope, element, attrs) {
                     var search = {
                         params: null,
