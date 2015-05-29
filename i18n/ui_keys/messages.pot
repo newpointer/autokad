@@ -18,6 +18,10 @@ msgid "autokad_search_source::company_name"
 msgstr ""
 
 #: ../i18n/ui_keys/src/keys.txt:1
+msgid "autokad_search_source::company_full_name"
+msgstr ""
+
+#: ../i18n/ui_keys/src/keys.txt:1
 msgid "autokad_search_source::company_ogrn"
 msgstr ""
 

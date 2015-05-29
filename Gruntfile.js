@@ -1,8 +1,7 @@
-// Пример настройки сборщика для приложения nkb-app проекта rsearch
 //
-var _       = require("lodash"), // опционально
-    _d      = require("lodash-deep"), // опционально
-    path    = require('path'), // опционально
+var _       = require("lodash"),
+    _d      = require("lodash-deep"),
+    path    = require('path'),
     webapp  = require('nullpointer-web-app');
 
 _.mixin(_d);

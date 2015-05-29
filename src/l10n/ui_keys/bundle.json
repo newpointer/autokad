@@ -7,6 +7,10 @@
         "cldrFormat": "one{0}few{1}many{2}other{2}"
       }
     },
+    "autokad_search_source::company_full_name": [
+      null,
+      "по полному наименованию"
+    ],
     "autokad_search_source::company_inn": [
       null,
       "по ИНН"
@@ -32,6 +36,10 @@
         "cldrFormat": "one{0}other{1}"
       }
     },
+    "autokad_search_source::company_full_name": [
+      null,
+      "по полному наименованию"
+    ],
     "autokad_search_source::company_inn": [
       null,
       "по ИНН"
