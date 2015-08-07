@@ -23,6 +23,6 @@
 
         "lodash": "*",
         "lodash-deep": "*",
-        "nullpointer-web-app": "newpointer/web-app.git"
+        "nullpointer-web-app": "git+ssh://git@github.com:newpointer/web-app.git"
     }
 }
