@@ -73,7 +73,7 @@ define(function(require) {'use strict';
                     items.push(item);
                 });
 
-                var result = data['Result'] = {
+                data['Result'] = {
                     "Page":         parseInt($htmlData.find('#documentsPage').val()),
                     "PageSize":     parseInt($htmlData.find('#documentsPageSize').val()),
                     "PagesCount":   parseInt($htmlData.find('#documentsPagesCount').val()),
