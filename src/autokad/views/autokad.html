@@ -57,12 +57,14 @@
                             <div class="participant">
                                 <span class="participant-name" ng-bind-html="item.Plaintiffs.Participants[0].Name | highlightSearch:search.requestData.q"></span>
                                 <span class="participant-address muted">{{item.Plaintiffs.Participants[0].Address}}</span>
+                                <span class="participant-inn muted" ng-show="item.Plaintiffs.Participants[0].Inn">ИНН {{item.Plaintiffs.Participants[0].Inn}}</span>
                             </div>
                         </div>
                         <div class="participant-more-items" ng-show="item.__more">
                             <div class="participant" ng-repeat="participant in item.Plaintiffs.Participants track by $index" ng-show="$index > 0">
                                 <span class="participant-name" ng-bind-html="participant.Name | highlightSearch:search.requestData.q"></span>
                                 <span class="participant-address muted">{{participant.Address}}</span>
+                                <span class="participant-inn muted" ng-show="participant.Inn">ИНН {{participant.Inn}}</span>
                             </div>
                             <div class="participant-detailed" ng-show="item.Plaintiffs.Count > item.Plaintiffs.Participants.length">
                                 <a class="underline" ng-href="http://kad.arbitr.ru/Card/{{item.CaseId}}" target="_blank">${_tr("Подробнее...")}</a>
@@ -77,12 +79,14 @@
                             <div class="participant">
                                 <span class="participant-name" ng-bind-html="item.Respondents.Participants[0].Name | highlightSearch:search.requestData.q"></span>
                                 <span class="participant-address muted">{{item.Respondents.Participants[0].Address}}</span>
+                                <span class="participant-inn muted" ng-show="item.Respondents.Participants[0].Inn">ИНН {{item.Respondents.Participants[0].Inn}}</span>
                             </div>
                         </div>
                         <div class="participant-more-items" ng-show="item.__more">
                             <div class="participant" ng-repeat="participant in item.Respondents.Participants track by $index" ng-show="$index > 0">
                                 <span class="participant-name" ng-bind-html="participant.Name | highlightSearch:search.requestData.q"></span>
                                 <span class="participant-address muted">{{participant.Address}}</span>
+                                <span class="participant-inn muted" ng-show="participant.Inn">ИНН {{participant.Inn}}</span>
                             </div>
                             <div class="participant-detailed" ng-show="item.Respondents.Count > item.Respondents.Participants.length">
                                 <a class="underline" ng-href="http://kad.arbitr.ru/Card/{{item.CaseId}}" target="_blank">${_tr("Подробнее...")}</a>
