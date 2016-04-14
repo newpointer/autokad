@@ -22,7 +22,6 @@
         "grunt-bower-task": "*",
 
         "lodash": "*",
-        "lodash-deep": "*",
         "nullpointer-web-app": "git+ssh://git@github.com:newpointer/web-app.git"
     }
 }

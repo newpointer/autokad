@@ -1,10 +1,7 @@
 //
 var _       = require("lodash"),
-    _d      = require("lodash-deep"),
     path    = require('path'),
     webapp  = require('nullpointer-web-app');
-
-_.mixin(_d);
 
 //
 module.exports = function(grunt) {
@@ -20,7 +17,7 @@ module.exports = function(grunt) {
         buildMeta   = webapp.getBuildMeta();
 
     // extend i18n
-    _.deepSet(gruntConfig, 'i18n.ui_keys.options', {
+    _.set(gruntConfig, 'i18n.ui_keys.options', {
         mode:           'simple',
         pattern:        '**/*.txt',
         inputDir:       path.resolve(__dirname, 'i18n/ui_keys/src'),
