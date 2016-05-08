@@ -26,7 +26,7 @@
             </select>
         </div>
         <div class="align-right arbitr-link-box nowrap">
-            <a class="underline" href="http://kad.arbitr.ru/" target="_blank">${_tr("Картотека арбитражных дел")}</a>
+            <a class="underline" ng-href="{{'http://kad.arbitr.ru/' | externalUrl}}" target="_blank">${_tr("Картотека арбитражных дел")}</a>
         </div>
     </div>
     <div class="search-result">
@@ -43,7 +43,7 @@
                 <tr ng-repeat="item in search.result.Items track by $index">
                     <td>
                         <span class="case-info"><span class="case-type badge">{{_tr(item.CaseType)}}</span><span class="case-date">{{item.Date | date:'dd.MM.yyyy'}}</span></span>
-                        <a class="underline case-link" ng-href="http://kad.arbitr.ru/Card/{{item.CaseId}}" target="_blank">{{item.CaseNumber}}</a>
+                        <a class="underline case-link" ng-href="{{('http://kad.arbitr.ru/Card/' + item.CaseId) | externalUrl}}" target="_blank">{{item.CaseNumber}}</a>
                     </td>
                     <td>
                         <span class="case-court">{{item.CourtName}}</span>
@@ -67,7 +67,7 @@
                                 <span class="participant-inn muted" ng-show="participant.Inn">ИНН {{participant.Inn}}</span>
                             </div>
                             <div class="participant-detailed" ng-show="item.Plaintiffs.Count > item.Plaintiffs.Participants.length">
-                                <a class="underline" ng-href="http://kad.arbitr.ru/Card/{{item.CaseId}}" target="_blank">${_tr("Подробнее...")}</a>
+                                <a class="underline" ng-href="{{('http://kad.arbitr.ru/Card/' + item.CaseId) | externalUrl}}" target="_blank">${_tr("Подробнее...")}</a>
                             </div>
                         </div>
                     </td>
@@ -89,7 +89,7 @@
                                 <span class="participant-inn muted" ng-show="participant.Inn">ИНН {{participant.Inn}}</span>
                             </div>
                             <div class="participant-detailed" ng-show="item.Respondents.Count > item.Respondents.Participants.length">
-                                <a class="underline" ng-href="http://kad.arbitr.ru/Card/{{item.CaseId}}" target="_blank">${_tr("Подробнее...")}</a>
+                                <a class="underline" ng-href="{{('http://kad.arbitr.ru/Card/' + item.CaseId) | externalUrl}}" target="_blank">${_tr("Подробнее...")}</a>
                             </div>
                         </div>
                     </td>
@@ -99,7 +99,7 @@
         <div class="align-center empty-result muted" ng-show="!search.isNoResult() && search.isEmptyResult() && !search.hasError()">${_tr("Арбитражных дел не найдено")}</div>
         <div class="align-center empty-result" ng-show="search.hasError()">
             ${_trc("Поиск в", "Поиск в картотеке арбитражных дел временно недоступен")}
-            <a class="underline" href="http://kad.arbitr.ru/" target="_blank">${_trc("картотеке арбитражных дел", "Поиск в картотеке арбитражных дел временно недоступен")}</a>
+            <a class="underline" ng-href="{{'http://kad.arbitr.ru/' | externalUrl}}" target="_blank">${_trc("картотеке арбитражных дел", "Поиск в картотеке арбитражных дел временно недоступен")}</a>
             ${_trc("временно недоступен", "Поиск в картотеке арбитражных дел временно недоступен")}
         </div>
     </div>

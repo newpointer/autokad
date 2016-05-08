@@ -20,6 +20,12 @@ define(function(require) {'use strict';
 
     var app = angular.module('app', _.pluck(submodules, 'name'))
         //
+        .constant('nkbUserConfig', {
+            resource: {
+                'external.url': '/siteapp/url/external/'
+            }
+        })
+        //
         .config(['$logProvider', function($logProvider){
             $logProvider.debugEnabled(false);
         }])

@@ -53,6 +53,10 @@ root._RESOURCES_CONFIG = {
         name: 'lodash',
         location: 'external_components/nullpointer-commons/lodash'
     }, {
+        name: 'nkb.filters',
+        location: 'external_components/nullpointer-commons/nkb/filters',
+        main: 'filters'
+    }, {
         name: 'np.directives',
         location: 'external_components/nullpointer-commons/angular/directives',
         main: 'directives'
