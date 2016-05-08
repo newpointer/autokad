@@ -19,7 +19,8 @@ define(function(require) {'use strict';
                           require('ng-infinite-scroll');
 
     var extmodules = {
-        'np.directives': require('np.directives')
+        'nkb.filters':      require('nkb.filters'),
+        'np.directives':    require('np.directives')
     };
 
     var submodules = {
