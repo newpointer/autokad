@@ -59,7 +59,8 @@
         "nullpointer-commons": {
             "lodash": "src/lodash",
             "angular": "src/angular",
-            "nkb": "src/nkb"
+            "nkb": "src/nkb",
+            "utils": "src/utils"
         },
         "blueimp-*": {}
     },
