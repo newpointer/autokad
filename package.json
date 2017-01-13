@@ -1,6 +1,6 @@
 {
     "name": "autokad",
-    "version": "1.4.1",
+    "version": "1.5.0-SNAPSHOT",
     "description": "autokad frontend",
 
     "author": {
@@ -22,7 +22,6 @@
         "grunt-bower-task": "*",
 
         "lodash": "*",
-        "lodash-deep": "*",
         "nullpointer-web-app": "git+ssh://git@github.com:newpointer/web-app.git"
     }
 }
